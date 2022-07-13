@@ -1,0 +1,33 @@
+.flex-container {
+    padding: 10px;
+    background: gold;
+    display: flex;
+    
+
+    }
+  .flex-item {
+    margin: 10px;
+    padding: 5px;
+    background: tomato;
+    border: 1px solid #FFF;
+    }
+  
+
+
+    /* 
+    Flex-direction - своиство для управления раскладкой блоков
+            flex-direction: column-reverse;
+        row — строка (значение по умолчанию);
+        row-reverse — строка с элементами в обратном порядке;
+        column — колонка;
+        column-reverse — колонка с элементами в обратном порядке.
+
+
+    Flex-wrap - своиство для управления переносами.
+            flex-wrap: wrap;
+        nowrap — блоки не переносятся (значение по умолчанию);
+        wrap — блоки переносятся;
+        wrap-reverse — блоки переносятся и располагаются в обратном порядке.
+        nowrap, wrap, wrap-reverse
+
+    */

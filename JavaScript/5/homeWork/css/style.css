@@ -1,0 +1,450 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    width: 1060px;
+    margin: 0 auto;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+/*header*/
+.main_header{
+    background: #373A3C;
+    border-radius: 4px;
+    height: 60px;
+}
+
+.main_header .header_content{
+    display: flex;
+    align-items: center;
+}
+
+.main_header .header_content .logo{
+    padding: 15px 0;
+    flex: 1;
+}
+
+.main_header .header_content .logo .logo__link{
+}
+
+.main_header .header_content .logo .logo__img{
+}
+
+
+.main_header .header_content .menu{
+    flex: 2;
+    padding: 15px 0;
+}
+
+.main_header .header_content .menu .menu__list{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.main_header .header_content .menu .menu__list .menu__item{
+    list-style-type: none;
+    padding-left: 50px;
+}
+
+.main_header .header_content .menu .menu__list .item_logo{
+    display: flex;
+    padding-right: 15px;
+}
+
+.main_header .header_content .menu .menu__list .item_logo .item_logo_img_l{
+    padding-right: 10px;
+}
+
+.main_header .header_content .menu .menu__list .item_logo .item_logo_img_r{
+    padding-left: 10px;
+}
+
+
+.main_header .header_content .menu .menu__list .menu__link{
+    font-family: 'Roboto', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+    color: rgba(255, 255, 255, 0.5);
+}
+.main_header .header_content .menu .menu__list .menu__link:hover{
+    color: #ffffff;
+}
+
+
+/*promo*/
+.promo{
+    min-height: 641px;
+    background: #4F4F4F;
+}
+
+.promo .promo__bl{
+    position: relative;
+}
+
+.promo .promo__bl .promo__img{
+    width: 100%;
+}
+
+.promo .promo__bl .btn_left{
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 125px;
+    height: 100%;
+}
+
+.promo .promo__bl .btn_right{
+    position: absolute;
+    display: block;
+    top: 0;
+    right: 0;
+    width: 125px;
+    height: 100%;
+}
+
+.promo .promo_content{
+    position: absolute;
+    left: 60%;
+    top: 38%;
+}
+
+.promo .promo_content .content_box1{
+    margin-bottom: 30px;
+}
+
+.promo .promo_content .content_box1 .content_title_m{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 42px;
+    color: #ffffff;
+}
+
+.promo .promo_content .content_box1 .content_title_m .content_title_ms{
+    display: block;
+    color: #ffffff;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+}
+
+.promo .promo_content .content_boxs{
+    display: flex;
+}
+
+.promo .promo_content .content_boxs .content_box2{
+    width: 136px;
+    height: 38px;
+    background-color: #8DD83D;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+.promo .promo_content .content_boxs .content_box3{
+    width: 148px;
+    height: 38px;
+    background: #828282;
+    border-radius: 4px;
+    margin-left: 5px;
+}
+
+.promo .promo_content .content_title_bl{
+    text-align: center;
+    padding-top: 8px;
+    color: #ffffff;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+}
+
+/*info*/
+.info{
+    background: #4F4F4F;
+}
+
+.info .info_title{
+    padding: 64px 0 44px 0;
+    text-align: center;
+}
+
+.info .info_title .title_img{
+
+}
+
+.info .info_title .title_h3{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 56px;
+    color: #FFFFFF;
+}
+
+.info .info_title .title_h3 .title_h3_s{
+    display: block;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 42px;
+    color: #FFFFFF;
+}
+
+.info .info_content{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    padding-bottom: 162px;
+}
+
+.info .info_content .info_box{
+    width: 320px;
+    height: 420px;
+    background-color: #ffffff;
+    border: 1px solid #8DD83D;
+    border-radius: 4px;
+}
+
+.info .info_content .info_box .box_img{
+
+}
+
+.info .info_content .info_box .box_title{
+    padding-left: 22px;
+    padding-top: 16px;
+    padding-bottom: 40px;
+}
+
+.info .info_content .info_box .box_title .box_title_h4{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    color: #435766;
+    margin-bottom: 13px;
+}
+
+.info .info_content .info_box .box_title .box_disc{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    color: #435766;
+
+}
+
+.info .info_content .info_box .box_btn{
+    width: 278px;
+    height: 60px;
+    background: #8DD83D;
+    border-radius: 4px;
+    margin: 0 auto;
+}
+
+.info .info_content .info_box .box_btn .box_btn_text{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    color: #FFFFFF;
+    text-align: center;
+    padding-top: 19px;
+}
+
+/*games*/
+.games{
+    position: relative;
+    min-height: 480px;
+    background: #373A3C;
+}
+.games .games_bk{
+}
+
+.games .games_bk .games_img{
+    width: 100%;
+}
+
+.games .games_content{
+    position: absolute;
+    top: 115px;
+    right: 825px;
+}
+
+.games .games_content .content_b1{
+    margin-bottom: 39px;
+}
+
+.games .games_content .content_b1 .b1_title{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 56px;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+}
+
+.games .games_content .content_b1 .b1_desc{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    color: #FFFFFF;
+}
+
+.games .games_content .boxs_btn{
+    display: flex;
+}
+
+.games .games_content .boxs_btn .btn1{
+    width: 207px;
+    height: 60px;
+    background: #828282;
+    border-radius: 4px;
+    margin-right: 15px;
+}
+
+.games .games_content .boxs_btn .btn1 .btn1_title{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    color: #FFFFFF;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.games .games_content .boxs_btn .btn2{
+    width: 278px;
+    height: 60px;
+    background: #8DD83D;
+    border-radius: 4px;
+}
+
+.games .games_content .boxs_btn .btn2 .btn2_title{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    color: #FFFFFF;
+    text-align: center;
+    padding-top: 20px;
+}
+
+/*footer*/
+.main_footer{
+    background: #373A3C;
+    border-radius: 4px;
+    padding-top: 58px;
+}
+
+.main_footer .footer_content{
+    display: flex;
+    margin-top: 15px;
+}
+
+.main_footer .footer_content .footer_title{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+    color: #7DD42F;
+    padding-bottom: 30px;
+}
+
+.footer_list{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #FFFFFF;
+    list-style-type: none;
+    line-height: 50px;
+}
+
+
+.main_footer .footer_content .b1_xbox{
+   margin-right: 250px;
+}
+
+.main_footer .footer_content .b2_dev{
+    margin-right: 250px;
+}
+
+.main_footer .footer_content .b3_follow{
+
+}
+
+.b3_smg{
+    display: flex;
+}
+
+.smg_link{
+    display: block;
+    padding-right: 20px;
+}
+
+.main_footer .footer_line{
+    border: none;
+    color: #7D7F80;
+    background-color: #7D7F80;
+    height: 2px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.main_footer .info_down{
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-evenly;
+}
+
+.info_down .box1_d{
+    padding-bottom: 36px;
+}
+
+.info_down .box1_d .ID_text1{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #FFFFFF;
+    display: inline-block;
+    padding-right: 550px;
+}
+
+.info_down .box1_d .ID_text2{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #FFFFFF;
+    display: inline-block;
+    text-align: end;
+    padding-left: 525px;
+}

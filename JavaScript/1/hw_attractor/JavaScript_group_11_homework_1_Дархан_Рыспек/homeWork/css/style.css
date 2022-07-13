@@ -1,0 +1,109 @@
+/* своства box-sizing: border-box; отвечает за правильно отображение своиств Высоты/Ширины для всех элеменов с учетом margin и padding */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 1140px;
+    /* смещение блочного элемента в центр */
+    margin: 0 auto; 
+}
+
+.main {
+    height: 800px;
+    /* своиство "background" - image(картинка)/ position(позиция X и Y)/ size(размер)*/
+    background: url(../img/main_bg.jpg) center center/cover no-repeat;
+    padding: 25px 0 25px 0;
+    border: 4px double black;
+}
+
+.logo .logo_img {
+    display: block;
+    margin: 0 auto;
+    height: 50px;
+    width: 110px;
+    
+}
+
+.logo .logo_span {
+    display: block;
+    color: rgb(22, 19, 79);
+    font-size: 22px;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.info .title {
+    color: rgb(22, 19, 79);
+    font-size: 55px;
+    text-align: center;
+    text-decoration: underline;
+    text-transform: uppercase;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+#title_id {
+    color: rgb(208, 59, 25);
+}
+
+.info .title2 {
+    display: block;
+    color: rgb(22, 19, 79);
+    font-size: 27px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+}
+
+.info .text {
+    color: rgb(22, 19, 79);
+    font-size: 16px;
+    text-indent: 30px;
+}
+
+.doptext {
+    color: rgb(22, 19, 79);
+    font-size: 16px;
+    text-indent: 30px;
+    height: 500px;
+    width: 650px;
+    margin-top: 45px;
+    margin-bottom: 25px;
+}
+
+.contact {
+    height: 800px;
+    /* своиство "background" - image(картинка)/ position(позиция X и Y)/ size(размер)*/
+    background: url(../img/main_bg2.jpg) center center/cover no-repeat;
+    padding: 25px 0 25px 0;
+    border: 4px double black;
+    
+}
+
+.phone .button_ph {
+    display: block;
+    margin: 0px auto;
+    margin-top: 73px;
+    width: 313px;
+    height: 72px;
+    /* сплошная граница */
+    border: 4px solid rgba(0, 0, 0, 0.23);
+    /*градиент для переливания с низу в верх*/
+    background-image: linear-gradient(to top, #8d9091 0%, #cccdcd 100%);
+    /**/
+    text-shadow: -1px -1px 0 rgba(22, 19, 79, 0.22);
+    color: rgb(22, 19, 79);
+    font-size: 21px;
+    line-height: 24px;
+    text-transform: uppercase;
+}
+
+.phone a {
+    color: rgb(22, 19, 79);
+    font-size: 18px;
+    line-height: 24px;
+    text-transform: uppercase;
+}

@@ -1,0 +1,123 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container{
+    margin: 0 auto;
+    width: 1008px;
+    height: 100%;
+}
+
+.header_main{
+    height: 62px;
+    background-color: #02918c;
+}
+
+.header_main .header_link{
+    display: inline-block;
+    margin-top: 18px;
+    margin-left: 185px;
+}
+
+.promo .promo_img{
+    width: 100%;
+    height: auto;
+}
+
+.info{
+    margin-top: 50px;
+    color: #7e8287;
+}
+
+.info .info_main{
+    margin-bottom: 50px;
+}
+
+.info .info_main .info_main_title{
+    text-align: center;
+    margin-bottom: 15px;
+    color: #02918c;
+    font-size: 46px;
+    font-weight: bold;
+}
+
+.info .info_main .info_main_text{
+    font-size: 16px;
+    line-height: 35px;
+    text-align: center;
+
+}
+
+.info .info_main .info_main_text .info_main_text_b{
+    font-weight: bold;
+}
+
+.info .info_block{
+    display: flex;
+    justify-content: space-around;
+}
+
+.info .info_block .info_block_ih{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.blimg{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.info .info_block .info_block_ih .info_block_img{
+    display: block;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.info .info_block .info_block_ih .info_block_title{
+    margin-top: 25px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.info .info_block .info_block_tt{
+    margin-top: 25px;
+}
+
+.info .info_block .info_block_tt .info_block_text{
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 21px;
+    text-align: center;
+    padding: 0 10px 0 10px;
+}
+
+.footer_main{
+    height: 79px;
+    width: 100%;
+    background-color: #000;
+    margin-top: 125px;
+}
+
+.footer_main .footer_block{
+    padding-top: 50px;
+}
+
+.footer_main .footer_block .footer_text{
+    font-size: 12px;
+    color: #7e8287;
+    text-align: center;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+/* Информация к дизайну:
+
+Футер:
+высота: 79px   фон: #000   текст: #7e8287 12px normal
+© Myfolio  */

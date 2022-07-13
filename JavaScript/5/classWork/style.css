@@ -1,0 +1,48 @@
+*{
+    box-sizing: border-box;
+}
+
+.container{
+    position: relative;
+    width: 1200px;
+    margin: 0 auto;
+    background-color: rgb(180, 175, 168);
+}
+
+.box{
+    height: 200px;
+}
+
+.box1{
+    background-color: rgb(255, 0, 0);
+    width: 1000px;
+}
+
+.box2{
+    background-color: rgb(217, 255, 0);
+    width: 280px;
+    position: fixed;
+
+}
+.inner{
+    width: 100px;
+    height: 80px;
+    background-color: darkblue;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -50px;
+    margin-top: -40px;
+}
+
+
+.box3{
+    background-color: rgb(5, 66, 23);
+
+}
+
+.box4{
+    background-color: blue;
+    width: 400px;
+}
+

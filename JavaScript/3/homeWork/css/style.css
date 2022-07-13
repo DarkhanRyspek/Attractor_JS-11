@@ -1,0 +1,245 @@
+/*ссылок будет много - все менюшки, логотипы, кнопки должны быть ссылками / все может лежать в одном контейнере
+Шрифт Arial,
+*/
+*{
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    width: 1024px;
+    margin: 0 auto;
+    height: 100%;
+}
+
+/*header-1*/
+.main_header{
+    background-color: #fff;
+    height: 65px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main_header .logo {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main_header .logo .logo_link{
+}
+
+.main_header .logo .logo_img{
+    height: 45px;
+    width: 212px;
+}
+
+.main_header .menu{
+    width: 70%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.main_header .menu .menu_tb{
+    display: flex;
+}
+
+.main_header .menu .menu_tb .menu_tb_item{
+    text-decoration: none;
+    list-style-type: none;
+    padding-left: 35px;
+}
+
+.main_header .menu .menu_tb .menu_tb_link{
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 22px;
+    color: #333;
+}
+
+/*promo-1*/
+.promo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 600px;
+    background: url(../img/image.jpg) center center/cover no-repeat;
+}
+
+.promo .promo_box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.promo .promo_box .promo_title{
+    font-size: 50px;
+    color: #fff;
+}
+
+.promo .promo_box .promo_text{
+    font-size: 24px;
+    line-height: 38px;
+    color: #fff;
+}
+
+/*donate*/
+.donate{
+    display: flex;
+    height: 310px;
+}
+
+.donate .donate_box_1{
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.donate .donate_box_2{
+    flex: 1;
+}
+
+.donate .donate_box_3{
+    flex: 2;
+    background-color: #9b242d;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.donate .donate_box_3 .donate_title{
+    padding-left: 10%;
+    font-size: 40px;
+    color: #fff;
+}
+
+.donate .donate_box_3 .donate_text{
+    padding-left: 10%;
+    font-size: 16px;
+    line-height: 22px;
+    color: #fff;
+}
+
+/*sing up*/
+.singup{
+    display: flex;
+    height: 317px;
+}
+
+.singup .singup_box1{
+    flex: 2;
+    background-color: #46a651;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    direction: rtl;
+}
+
+.singup .singup_box1 .singup_bl_title{
+    width: 80%;
+    height: auto;
+    margin-right: 50px;
+}
+
+.singup .singup_box1 .singup_bl_title .singup_title{
+    font-size: 40px;
+    color: #fff;
+}
+
+.singup .singup_box1 .singup_bl_text{
+    width: 80%;
+    height: auto;
+    margin-right: 50px;
+
+}
+
+.singup .singup_box1 .singup_bl_text .singup_text{
+    font-size: 16px;
+    line-height: 22px;
+    color: #fff;
+}
+
+.singup .singup_box1 .singup_btn_block{
+    width: 80%;
+    height: auto;
+    margin-right: 50px;
+}
+
+.singup .singup_box1 .singup_btn_block .singup_button{
+    background-color: #348e3e;
+    color: #fff;
+    font-size: 16px;
+    line-height: 22px;
+    width: 120px;
+    height: 40px;
+    border: 0px;
+}
+
+.singup .singup_box2{
+    flex: 1;
+}
+
+/*Facebook*/
+.facebook{
+    display: flex;
+    height: 316px;
+}
+
+.facebook .f_box1{
+    width: 672px;
+    background: url(../img/image-3.jpg) center center/cover no-repeat;
+}
+
+.facebook .f_box2{
+    flex: 1;
+    width: 100%;
+    background-color: #3b5997;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.facebook .f_box2 .box2_link{
+
+}
+
+.facebook .f_box2 .box2_text{
+    font-size: 16px;
+    line-height: 22px;
+    color: #fff;
+}
+
+/*footer*/
+.main_footer{
+    background-color: #373838;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.main_footer .footer_tb{
+    display: flex;
+}
+
+.main_footer .footer_tb .footer_tb_item{
+    text-decoration: none;
+    list-style-type: none;
+    padding-left: 40px;
+}
+
+.main_footer .footer_tb .footer_tb_link{
+    font-size: 15px;
+    line-height: 22px;
+    color: #939393;
+    text-decoration: none;
+    text-transform: capitalize;
+}

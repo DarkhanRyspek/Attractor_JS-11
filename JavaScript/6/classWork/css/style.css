@@ -1,0 +1,75 @@
+.col{
+    width: 20%;
+    height: 250px;
+    background-color: aqua;
+    margin-right: 3%;
+    display: inline-block;
+}
+
+.col:last-child {
+    margin-right: 0;
+    background-color: brown;
+  }
+
+  .col:first-child{
+    background-color: blue;
+  }
+
+  .col:nth-child(5){
+    background-color: black;
+  }
+
+  .col:hover{
+    background-color: chartreuse;
+  }
+
+  .link{
+    padding-right: 15px;
+    text-decoration: none;
+  }
+
+  .link:link{
+    color: blueviolet;
+  }
+
+  .link:visited{
+    color: crimson;
+  }
+
+  .link:active{
+    color: darkblue;
+  }
+
+.btn{
+    background-color: aqua;
+}
+
+  .btn:active{
+    background-color: blue;
+    opacity: 0.5;
+  }
+
+
+  .item{
+    margin-top: 50px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .item .title{
+    color: brown;
+    font-size: 25px;
+  }
+
+  .item .distr{
+    font-size: 15px;
+  }
+
+  .item .title::after{
+    content: "";
+    display: block;
+    margin: 0 auto;
+    width: 40px;
+    height: 40px;
+    background: url("../img/ic-lamp.png") center center/cover no-repeat;
+  }
