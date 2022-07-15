@@ -1,0 +1,28 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+.lb_btn{
+    display: inline-block;
+    margin: 20px;
+}
+
+
+.btn{
+    display: none;
+}
+
+.title::before{
+    content: "";
+    display: inline-block;
+    width: 25px;
+    height: 15px;
+    background: url("../img/check.png") center top no-repeat;
+}
+
+.lb_btn input:checked + .title::before{
+    background-position: center bottom;
+}
