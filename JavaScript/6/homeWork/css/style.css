@@ -171,6 +171,10 @@
     box-shadow: 5px 5px 7px 1px rgb(37 55 69 / 20%);
 }
 
+.about .content .blok .block_img .img{
+    height: 100%;
+    width: 110%;
+}
 
 .about .content .blok .block_img .text{
     position: absolute;
