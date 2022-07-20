@@ -443,11 +443,12 @@ body{
         flex-direction: column;
     }
     .promo .main_header .menu .menu_list{
-        flex-wrap: wrap;
-        justify-content: center;
+        align-items: center;
+        flex-direction: column;
     }
     .promo .main_header .menu .menu_list .menu_item{
-        padding-right: 25px;
+        padding-right: 0;
+        padding-bottom: 5px;
     }
     .promo .main_header .menu .menu_list .menu_item:last-child{
         height: 35px;
