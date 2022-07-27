@@ -1,0 +1,30 @@
+@import var
+@import mixins
+@import white_block
+@import violet_block
+@import darkV_block
+@import footer
+
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+
+body
+    font-family: 'Mplus 1p', Arial, Helvetica, sans-serif
+
+.container
+    margin: 0 auto
+    max-width: 1140px
+    
+@media screen and (max-width: 1024px)
+    .container
+        max-width: 900px
+
+@media screen and (max-width: 900px)
+    .container
+        max-width: 550px
+
+@media screen and (max-width: 600px)
+    .container
+        max-width: 350px

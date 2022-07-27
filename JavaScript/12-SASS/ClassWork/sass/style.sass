@@ -1,0 +1,36 @@
+@import variables
+@import mixins
+@import header
+    
+body
+    margin: 0
+    padding: 0
+    font-family: $main-font
+
+h1,h2,h3,h4,h5,h6
+    margin: 0
+    padding: 0
+
+.block
+    width: 450px
+    height: 450px
+    margin: 50px 50px
+    background: red
+    .block__title
+        font-size: 45px
+        font-weight: bold
+        color: $main-color
+        &:hover
+            color: green
+    .block__text
+        font-size: 15px
+        color: $main-color
+        text-align: center
+        padding: 15px 15px
+    
+.text
+    background: $color-bg
+    @include circle(195px)
+    span
+        font-size: 50px
+        padding: 15px 15px

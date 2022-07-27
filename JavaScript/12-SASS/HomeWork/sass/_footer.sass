@@ -1,0 +1,189 @@
+.footer
+    padding-top: 128px
+    padding-bottom: 128px
+    background-color: #150433
+    color: $text_color_t2
+    font-size: 12.6px
+    font-style: normal
+    .content
+        display: flex
+        justify-content: space-between
+        margin-bottom: 65px
+        .block1
+            flex-basis: 30%
+            .title
+                font-weight: 900
+                font-size: 24px
+                line-height: 43px
+                display: inline-block
+                background-image: linear-gradient(to right, #2787e0 0%, #2787e0 100%)
+                background-repeat: repeat-x
+                background-position: 0 80%
+                background-size: 0% 4px
+                &:hover
+                    background-size: 100% 4px
+            .text
+                font-weight: 400
+                font-size: 16.2px
+                line-height: 26px
+                background-image: linear-gradient(to right, #2787e0 0%, #2787e0 100%)
+                background-repeat: repeat-x
+                background-position: 0 90%
+                background-size: 0% 4px
+                &:hover
+                    background-size: 100% 3px
+        .block2
+            flex-basis: 15%
+            .title
+                font-weight: 800
+                margin-bottom: 25px
+                display: inline-block
+                background-image: linear-gradient(to right, #2787e0 0%, #2787e0 100%)
+                background-repeat: repeat-x
+                background-position: 0 80%
+                background-size: 0% 4px
+                position: relative
+                &:hover
+                    background-size: 100% 4px
+                &::after
+                    content: ''
+                    position: absolute
+                    left: 0
+                    bottom: -10px
+                    width: 100%
+                    height: 2px
+                    background-color: $block_bg_color
+            ul
+                list-style-type: none
+                li
+                    padding-bottom: 10px
+                    &:hover
+                        text-decoration: underline
+                            color: #2787e0
+                            thickness: 2px 
+        .block3
+            flex-basis: 15%
+            .title
+                font-weight: 800
+                margin-bottom: 25px
+                display: inline-block
+                background-image: linear-gradient(to right, #2787e0 0%, #2787e0 100%)
+                background-repeat: repeat-x
+                background-position: 0 80%
+                background-size: 0% 4px
+                position: relative
+                &:hover
+                    background-size: 100% 4px
+                &::after
+                    content: ''
+                    position: absolute
+                    left: 0
+                    bottom: -10px
+                    width: 100%
+                    height: 2px
+                    background-color: $block_bg_color
+            ul
+                list-style-type: none
+                li
+                    padding-bottom: 10px
+                    &:hover
+                        text-decoration: underline
+                            color: #2787e0
+                            thickness: 2px 
+        .block4
+            flex-basis: 15%
+            .title
+                font-weight: 800
+                margin-bottom: 25px
+                display: inline-block
+                background-image: linear-gradient(to right, #2787e0 0%, #2787e0 100%)
+                background-repeat: repeat-x
+                background-position: 0 80%
+                background-size: 0% 4px
+                position: relative
+                &:hover
+                    background-size: 100% 4px
+                &::after
+                    content: ''
+                    position: absolute
+                    left: 0
+                    bottom: -10px
+                    width: 100%
+                    height: 2px
+                    background-color: $block_bg_color
+            ul
+                list-style-type: none
+                li
+                    padding-bottom: 10px
+                    &:hover
+                        text-decoration: underline
+                            color: #2787e0
+                            thickness: 2px
+                    .img
+                        padding-right: 15px
+        .block5
+            flex-basis: 25%
+            .title
+                font-weight: 800
+                margin-bottom: 25px
+                display: inline-block
+                background-image: linear-gradient(to right, #2787e0 0%, #2787e0 100%)
+                background-repeat: repeat-x
+                background-position: 0 80%
+                background-size: 0% 4px
+                position: relative
+                &:hover
+                    background-size: 100% 4px
+                &::after
+                    content: ''
+                    position: absolute
+                    left: 0
+                    bottom: -10px
+                    width: 100%
+                    height: 2px
+                    background-color: $block_bg_color
+            .link
+                .link_item
+                    .link_img
+                        padding-right: 25px
+                    &::last-child
+                        padding-right: 0px
+    .descr
+        padding-left: 30%
+        font-style: normal
+        font-weight: 400
+        font-size: 11.7px
+        line-height: 19px
+        color: #FCFCFC
+
+@media screen and (max-width: 1024px)
+    .footer
+        .content
+            flex-wrap: wrap
+            .block1
+                display: none
+            .block2
+            .block3
+            .block4
+            .block5
+                flex-basis: 30%
+
+@media screen and (max-width: 900px)
+    .footer
+        .content
+            flex-wrap: wrap
+            .block1
+                display: none
+            .block2
+                flex-basis: 50%
+            .block3
+                flex-basis: 50%
+            .block4
+                flex-basis: 50%
+            .block5
+                flex-basis: 50%
+@media screen and (max-width: 600px)
+    .footer
+        .descr
+            text-align: center
+            padding-left: 0px
