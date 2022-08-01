@@ -1,0 +1,92 @@
+.infocard
+    background-color: $main_bg_color
+    font-style: normal
+    font-weight: 400
+    color: #FFFFFF
+    &__block1
+        padding: 64px 0 44px 0
+        text-align: center
+        .title
+            font-size: 48px
+            line-height: 56px
+            .title_small
+                display: block
+                font-size: 36px
+                line-height: 42px
+    &__block2
+        display: flex
+        justify-content: space-between
+        align-items: center
+        align-content: center
+        padding-bottom: 162px
+        .boxs
+            width: 320px
+            height: 420px
+            background-color: #ffffff
+            border: 1px solid #8DD83D
+            border-radius: 4px
+            .descr
+                padding-left: 22px
+                padding-top: 16px
+                padding-bottom: 40px
+                .title
+                    font-size: 18px
+                    line-height: 21px
+                    color: #435766
+                    margin-bottom: 13px
+                .text
+                    font-size: 24px
+                    line-height: 28px
+                    color: #435766
+            .button
+                width: 278px
+                height: 60px
+                background: #8DD83D
+                border-radius: 4px
+                margin: 0 auto
+                &__text
+                    font-size: 16px
+                    line-height: 21px
+                    text-align: center
+                    padding-top: 19px
+
+@media screen and (max-width: 1150px)
+    .infocard
+        &__block2
+            flex-direction: column
+
+@media screen and (max-width: 900px)
+    .infocard
+        &__block1
+            padding: 40px 0 28px 0
+            .title
+                font-size: 38px
+                line-height: 36px
+                .title_small
+                    font-size: 26px
+                    line-height: 22px
+        &__block2
+            flex-direction: column
+            padding-bottom: 45px
+            .boxs
+                width: 320px
+                height: 360px
+                margin-bottom: 10px
+                .descr
+                    text-align: center
+                    padding-top: 10px
+                    padding-bottom: 15px
+                    .title
+                        text-align: center
+                        font-size: 16px
+                        line-height: 12px
+                        margin-bottom: 5px
+                    .text
+                        font-size: 18px
+                        line-height: 18px
+                .button
+                    width: 250px
+                    height: 50px
+                    &__text
+                        font-size: 14px
+                        line-height: 14px

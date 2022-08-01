@@ -1,0 +1,55 @@
+.header {
+  background-color: #bd7474;
+  display: flex;
+  justify-content: space-between;
+}
+.header .logo {
+  padding: 0px 45px;
+}
+.header .logo img {
+  width: 45px;
+  height: 45px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+.block {
+  width: 450px;
+  height: 450px;
+  margin: 50px 50px;
+  background: red;
+}
+.block .block__title {
+  font-size: 45px;
+  font-weight: bold;
+  color: #474747;
+}
+.block .block__title:hover {
+  color: green;
+}
+.block .block__text {
+  font-size: 15px;
+  color: #474747;
+  text-align: center;
+  padding: 15px 15px;
+}
+
+.text {
+  background: #bd7474;
+  width: 195px;
+  height: 195px;
+  border-radius: 50%;
+}
+.text span {
+  font-size: 50px;
+  padding: 15px 15px;
+}/*# sourceMappingURL=style.css.map */
