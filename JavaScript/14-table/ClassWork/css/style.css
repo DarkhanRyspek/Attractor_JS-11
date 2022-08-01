@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  text-align: center;
+  margin: 25px;
+}
+.table td, .table th {
+  border: 1px solid #000;
+}
+.table th {
+  color: red;
+}/*# sourceMappingURL=style.css.map */
