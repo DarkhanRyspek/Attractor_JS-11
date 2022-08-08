@@ -1,0 +1,87 @@
+.preview
+    position: relative
+    &__content
+        position: absolute
+        left: 60%
+        top: 45%
+        font-style: normal
+        font-weight: 400
+        color: #ffffff
+        &__box1
+            margin-bottom: 30px
+            .title
+                font-size: 36px
+                line-height: 42px
+                .title__mod
+                    display: block
+                    font-size: 24px
+                    line-height: 28px
+        &__box2
+            display: flex
+            .content_box2
+                width: 136px
+                height: 38px
+                background-color: #8DD83D
+                border-radius: 4px
+                margin-right: 5px
+                .title
+                    font-size: 16px
+                    line-height: 21px
+                    text-align: center
+                    padding-top: 8px
+            .content_box3
+                width: 148px
+                height: 38px
+                background: #828282
+                border-radius: 4px
+                margin-left: 5px
+                .title
+                    font-size: 16px
+                    line-height: 21px
+                    text-align: center
+                    padding-top: 8px
+    .carousel-control-prev-icon
+        color: #fff
+    .carousel-control-next-icon
+        color: #fff
+
+@media screen and (max-width: 900px)
+    .preview
+        &__content
+            left: 55%
+            top: 40%
+            &__box1
+                margin-bottom: 15px
+                .title
+                    font-size: 28px
+                    line-height: 30px
+                    .title__mod
+                        font-size: 18px
+                        line-height: 20px
+            &__box2
+                .content_box2
+                    width: 116px
+                    height: 34px
+                    .title
+                        font-size: 14px
+                        padding-top: 6px
+                .content_box3
+                    width: 126px
+                    height: 34px
+                    .title
+                        font-size: 14px
+                        padding-top: 6px
+
+@media screen and (max-width: 600px)
+    .preview
+        &__content
+            left: 20%
+            top: 20%
+            &__box1
+                margin-bottom: 5px
+                .title
+                    font-size: 20px
+                    line-height: 15px
+                    .title__mod
+                        font-size: 14px
+                        line-height: 20px

@@ -1,0 +1,33 @@
+@import var
+@import mixin
+@import header
+@import preview
+@import infocard
+@import games
+@import footer
+
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+body
+    font-family: 'Roboto', Arial, Helvetica, sans-serif
+.container
+    max-width: 1060px
+a
+    text-decoration: none
+li
+    list-style: none
+
+@media screen and (max-width: 1150px)
+    .container
+        max-width: 950px
+
+@media screen and (max-width: 900px)
+    .container
+        max-width: 550px
+@media screen and (max-width: 600px)
+    .container
+        max-width: 350px
+
+// 600

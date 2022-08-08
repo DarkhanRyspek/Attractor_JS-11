@@ -1,0 +1,410 @@
+body {
+  margin: 0;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+@-webkit-keyframes shadow {
+  from {
+    text-shadow: 0 0 3px black;
+  }
+  50% {
+    text-shadow: 0 0 30px black;
+  }
+  100% {
+    text-shadow: 0 0 3px black;
+  }
+}
+
+@keyframes shadow {
+  from {
+    text-shadow: 0 0 3px black;
+  }
+  50% {
+    text-shadow: 0 0 30px black;
+  }
+  100% {
+    text-shadow: 0 0 3px black;
+  }
+}
+.shadow {
+  font-size: 30px;
+  -webkit-animation: shadow 2s infinite ease-in-out;
+          animation: shadow 2s infinite ease-in-out;
+}
+
+.ball-block {
+  height: 300px;
+  position: relative;
+  background-color: rgba(244, 94, 255, 0.6);
+}
+.ball-block:hover .ball {
+  -webkit-animation: bounce 2s;
+          animation: bounce 2s;
+}
+.ball-block .ball {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #030300;
+  position: absolute;
+  bottom: 0;
+  left: 47%;
+}
+
+@-webkit-keyframes bounce {
+  0% {
+    bottom: 0px;
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  25% {
+    bottom: 250px;
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  50% {
+    bottom: 0px;
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  75% {
+    bottom: 100px;
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  100% {
+    bottom: 0px;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    bottom: 0px;
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  25% {
+    bottom: 250px;
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  50% {
+    bottom: 0px;
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  75% {
+    bottom: 100px;
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  100% {
+    bottom: 0px;
+  }
+}
+.container-timing {
+  margin-top: 100px;
+  text-align: center;
+}
+.container-timing div {
+  display: inline-block;
+  margin: 20px 16px;
+  position: relative;
+  width: 150px;
+  height: 150px;
+  box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: 0.2s;
+}
+.container-timing div:hover span {
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+.container-timing div::after {
+  content: attr(class);
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  padding: 0 6px;
+}
+.container-timing div span {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  left: 0;
+  bottom: 0;
+  background-color: #F6AC31;
+  -webkit-animation: move 2s infinite alternate;
+          animation: move 2s infinite alternate;
+}
+.container-timing div span:nth-child(1) {
+  -webkit-animation-delay: 0.1s;
+          animation-delay: 0.1s;
+}
+.container-timing div span:nth-child(2) {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
+}
+.container-timing div span:nth-child(3) {
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
+}
+.container-timing div span:nth-child(4) {
+  -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s;
+}
+.container-timing div span:nth-child(5) {
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+}
+.container-timing div span:nth-child(6) {
+  -webkit-animation-delay: 0.6s;
+          animation-delay: 0.6s;
+}
+.container-timing div span:nth-child(7) {
+  -webkit-animation-delay: 0.7s;
+          animation-delay: 0.7s;
+}
+.container-timing div span:nth-child(8) {
+  -webkit-animation-delay: 0.8s;
+          animation-delay: 0.8s;
+}
+.container-timing div span:nth-child(9) {
+  -webkit-animation-delay: 0.9s;
+          animation-delay: 0.9s;
+}
+.container-timing div span:nth-child(10) {
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+}
+.container-timing div span:nth-child(11) {
+  -webkit-animation-delay: 1.1s;
+          animation-delay: 1.1s;
+}
+.container-timing div span:nth-child(12) {
+  -webkit-animation-delay: 1.2s;
+          animation-delay: 1.2s;
+}
+.container-timing div span:nth-child(13) {
+  -webkit-animation-delay: 1.3s;
+          animation-delay: 1.3s;
+}
+.container-timing div span:nth-child(14) {
+  -webkit-animation-delay: 1.4s;
+          animation-delay: 1.4s;
+}
+.container-timing div span:nth-child(15) {
+  -webkit-animation-delay: 1.5s;
+          animation-delay: 1.5s;
+}
+.container-timing .linear span {
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+}
+.container-timing .ease span {
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
+}
+.container-timing .ease-in span {
+  -webkit-animation-timing-function: ease-in;
+          animation-timing-function: ease-in;
+}
+.container-timing .ease-out span {
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+}
+.container-timing .ease-in-out span {
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+.container-timing .steps span {
+  -webkit-animation-timing-function: steps(10, end);
+          animation-timing-function: steps(10, end);
+}
+.container-timing .cubic-bezier-1 span {
+  -webkit-animation-timing-function: cubic-bezier(0.8, 1.5, 0.2, -1);
+          animation-timing-function: cubic-bezier(0.8, 1.5, 0.2, -1);
+}
+.container-timing .cubic-bezier-2 span {
+  -webkit-animation-timing-function: cubic-bezier(1, 0, 0, 0.5);
+          animation-timing-function: cubic-bezier(1, 0, 0, 0.5);
+}
+
+@-webkit-keyframes move {
+  0% {
+    left: 0;
+    bottom: 0;
+  }
+  100% {
+    left: 145px;
+    bottom: 145px;
+  }
+}
+
+@keyframes move {
+  0% {
+    left: 0;
+    bottom: 0;
+  }
+  100% {
+    left: 145px;
+    bottom: 145px;
+  }
+}
+.container-night {
+  padding: 80px 0;
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+}
+.container-night .animation-block {
+  margin: 30 auto;
+  width: 300px;
+  height: 280px;
+  position: relative;
+  overflow: hidden;
+  background-color: midnightblue;
+}
+.container-night .animation-block .waves {
+  background-color: lightseagreen;
+  height: 80px;
+  display: flex;
+  width: 120%;
+  position: absolute;
+  bottom: -20px;
+  left: -20%;
+  z-index: 2;
+  -webkit-animation: waves 2s linear alternate infinite;
+          animation: waves 2s linear alternate infinite;
+}
+.container-night .animation-block .waves .wave {
+  background-color: inherit;
+  width: 25%;
+  height: 30px;
+  border-radius: 50%;
+  margin-top: -12px;
+}
+.container-night .animation-block .boat {
+  width: 200px;
+  height: 40px;
+  background: #000;
+  border-radius: 0 0 40px 40px;
+  position: absolute;
+  bottom: 60px;
+  left: 40px;
+  z-index: 1;
+  -webkit-animation: boat 2s linear alternate infinite;
+          animation: boat 2s linear alternate infinite;
+}
+.container-night .animation-block .star {
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  box-shadow: 0 0 5px 0 #000;
+  -webkit-animation: star 1s alternate infinite;
+          animation: star 1s alternate infinite;
+}
+.container-night .animation-block .st1 {
+  top: 18%;
+  left: 85%;
+}
+.container-night .animation-block .st2 {
+  top: 30%;
+  left: 53%;
+}
+.container-night .animation-block .st3 {
+  top: 29%;
+  left: 73%;
+}
+.container-night .animation-block .st4 {
+  top: 23%;
+  left: 26%;
+}
+.container-night .animation-block .st5 {
+  top: 30%;
+  left: 73%;
+}
+.container-night .animation-block .st6 {
+  top: 29%;
+  left: 51%;
+}
+.container-night .animation-block .st7 {
+  top: 12%;
+  left: 64%;
+}
+.container-night .animation-block .st8 {
+  top: 26%;
+  left: 12%;
+}
+.container-night .animation-block .st9 {
+  top: 25%;
+  left: 59%;
+}
+.container-night .animation-block .st10 {
+  top: 25%;
+  left: 94%;
+}
+
+@-webkit-keyframes waves {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  50% {
+    transform: translate(20px, -10px);
+  }
+  100% {
+    transform: translate(40px, 0px);
+  }
+}
+
+@keyframes waves {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  50% {
+    transform: translate(20px, -10px);
+  }
+  100% {
+    transform: translate(40px, 0px);
+  }
+}
+@-webkit-keyframes boat {
+  0% {
+    transform: translate(0px, 0px) rotate(-3deg);
+  }
+  50% {
+    transform: translate(40px, -10px) rotate(0deg);
+  }
+  100% {
+    transform: translate(40px, 0px) rotate(3deg);
+  }
+}
+@keyframes boat {
+  0% {
+    transform: translate(0px, 0px) rotate(-3deg);
+  }
+  50% {
+    transform: translate(40px, -10px) rotate(0deg);
+  }
+  100% {
+    transform: translate(40px, 0px) rotate(3deg);
+  }
+}
+@-webkit-keyframes star {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(2);
+  }
+}
+@keyframes star {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(2);
+  }
+}/*# sourceMappingURL=style.css.map */
