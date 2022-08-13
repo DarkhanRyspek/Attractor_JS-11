@@ -1,0 +1,88 @@
+.header {
+    padding-left: 90px;
+    padding-right: 80px;
+    min-height: 114px;
+    background: #FFFFFF;
+    box-shadow: 0px 12px 35px rgba(160, 121, 0, 0.2);
+}
+.navbar__content {
+    display: flex;
+    justify-content: space-between;
+}
+.logo_box {
+    margin-top: 38px;
+}
+
+.content_box {
+    display: flex;
+    align-items: center;
+    margin-top: 34px;
+    .menu_box1 {
+        .menu {
+            display: flex;
+            .menu__item {
+                margin-left: 56px;
+                list-style-type: none;
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 15px;
+                line-height: 18px;
+                background: linear-gradient(253.58deg, #FFC000 1.55%, #FF8A00 95.8%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                .menu__link {
+                    text-decoration: none;
+                }
+                .active::after {
+                    content: "";
+                    display: block;
+                    margin: 0 auto;
+                    width: 24px;
+                    margin-top: 4px;
+                    height: 2px;
+                    background-color: #FFC000;
+                }
+            }
+        }
+    }
+    .menu_box2 {
+        margin-left: 50px;
+        .menu__img {
+            position: relative;
+        }
+        .menu__img::after {
+            content: "12";
+            position: absolute;
+            top: -10px;
+            left: 25px;
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 100%;
+            font-size: 7px;
+            text-align: center;
+            color: #FFFFFF;
+            background-color: #FFC000;
+        }
+    }
+    .menu_box3 {
+        margin-left: 35px;
+        .menu__btn {
+            margin-left: 10px;
+            width: 160px;
+            height: 56px;
+            background: linear-gradient(253.58deg, #FFC000 1.55%, #FF8A00 95.8%);
+            box-shadow: 0px 12px 35px rgba(160, 121, 0, 0.2);
+            border-radius: 100px;
+            border: 0;
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 16px;
+            color: #FFFFFF;
+        }
+    }
+}

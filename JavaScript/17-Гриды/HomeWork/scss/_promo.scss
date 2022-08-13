@@ -1,0 +1,31 @@
+.promo {
+    position: relative;
+    width: 100%;
+    min-height: 490px;
+    background: linear-gradient(253.58deg, #FFC000 1.55%, #FF8A00 95.8%);
+    .content{
+        padding-top: 109px;
+        padding-left: 156px;
+        .title {
+            font-family: 'Proxima Nova';
+            font-weight: 900;
+            font-size: 44px;
+            line-height: 158.34%;
+            color: #FFFFFF;
+        }
+        .desct {
+            font-family: 'Proxima Nova';
+            font-size: 18px;
+            line-height: 33px;
+            color: #FFFFFF;
+            .desc_change {
+                font-weight: 900;
+            }
+        }
+    }
+    .promo_icons {
+        position: absolute;
+        top: 0;
+        right: 10%;
+    }
+}
