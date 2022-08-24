@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- eGenerator Apache-Ant template -->
+<project basedir="." default="target1">
+    <target name="target1">
+    <!-- Enter you build target here -->
+    </target>
+</project>

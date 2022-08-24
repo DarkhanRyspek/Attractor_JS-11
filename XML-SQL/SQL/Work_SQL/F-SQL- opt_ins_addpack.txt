@@ -1,0 +1,20 @@
+create or replace procedure opt_ins_addpack(
+  SP_ID    in     dtype. RecordID     %Type,
+  CT_ID    in     dtype. RecordID     %Type,
+  ST       in     dtype. RecordID     %Type,
+  SP_AD    in     dtype. RecordID     %Type,
+  PR       in       dtype. RecordID     %Type
+) is
+
+
+begin
+
+   INSERT INTO ows.ADD_PACK(
+        AMND_STATE,  AMND_DATE,  AMND_OFFICER,  SERV_PACK__OID,  F_I,  CCAT,  CONTR_TYPE,  NAME,  SERV_PACK_TYPE,  SERV_PACK__ID,  PRIORITY,  CAN_BE_SWITCHED,  DEFAULT_IS_ACTIVE,  APPLY_RULES,  IS_READY)
+        select ap.AMND_STATE,  sysdate,  46726,  SP_ID,  /*main SP*/  ap.F_I,  ap.CCAT,  CT_ID,  ap.NAME,  ap.SERV_PACK_TYPE,  SP_AD, /*Black_...*/  PR,  ap.CAN_BE_SWITCHED,  ap.DEFAULT_IS_ACTIVE,  ap.APPLY_RULES,  'N'
+    from ows.add_pack ap where ap.amnd_state = 'A' and ap.SERV_PACK__ID = ST and ap.CONTR_TYPE = CT_ID and rownum=1;
+
+   update ows.serv_pack sp set sp.is_ready = 'N' where sp.id=SP_ID and sp.amnd_state = 'A';
+   commit;
+
+end;

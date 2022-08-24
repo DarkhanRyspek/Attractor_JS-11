@@ -1,0 +1,43 @@
+<UFXMsg direction="Rq" msg_type="Application" scheme="WAY4Appl" version="2.0">
+	<MsgId>5467fe6b-9371-481e-affa-cb0595fdca20</MsgId>
+	<Source app="W4G"/>
+	<MsgData>
+		<Application>
+			<RegNumber>QP10001001-28072020-3</RegNumber>
+			<Institution>0038</Institution>
+			<OrderDprt>TXB08</OrderDprt>
+			<ObjectType>ContractAuthMethod</ObjectType>
+			<ActionType>AddOrUpdate</ActionType>
+			<ResultDtls>
+				<Parm>
+					<ParmCode>AcceptRq</ParmCode>
+					<Value>Y</Value>
+				</Parm>
+			</ResultDtls>
+			<ObjectFor>
+				<ContractIDT>
+					<RBSNumber>ƒ¿ÕÕ€≈  ¿–“€</RBSNumber>
+					<Client>
+						<ClientInfo>
+							<SocialNumber>ƒ¿ÕÕ€≈  À»≈Õ“¿</SocialNumber>
+							<ShortName>ƒ¿ÕÕ€≈  À»≈Õ“¿</ShortName>
+						</ClientInfo>
+					</Client>
+				</ContractIDT>
+			</ObjectFor>
+			<Data>
+				<AuthMethod>
+					<Name>CVC2 counter</Name>
+					<Code>CVC2</Code>
+					<AuthParamsList>
+						<AuthParameter>
+							<Code>CVC2_COUNTER</Code>
+							<Value>0</Value>
+						</AuthParameter>
+					</AuthParamsList>
+				</AuthMethod>
+			</Data>
+		</Application>
+	</MsgData>
+</UFXMsg>
+

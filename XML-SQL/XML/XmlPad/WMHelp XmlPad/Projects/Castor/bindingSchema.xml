@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!-- This file contains the binding information -->
+<!-- for the XML Schema -->
+<!-- It is meant to be used by the Castor Source Code Generator -->
+<cbf:binding xmlns:cbf="http://www.castor.org/SourceGenerator/Binding">
+     
+     <!--define the {namespace,package} binding -->
+     <cbf:package>
+          <cbf:name/>
+          <cbf:namespace/>
+     </cbf:package>
+     
+ </cbf:binding>

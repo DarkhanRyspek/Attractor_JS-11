@@ -1,0 +1,80 @@
+Запрос
+<UFXMsg direction="Rq" msg_type="Application" scheme="WAY4Appl" version="2.0">
+	<MsgId>9d8a8d7fce31217a6663bb9d2945510</MsgId>
+	<Source app="Web"/>
+	<MsgData>
+		<Application>
+			<RegNumber>AAd019a10bfebcbbdf8e31032021003</RegNumber>
+			<Institution>0038</Institution>
+			<OrderDprt>TXB01</OrderDprt>
+			<ObjectType>Usage</ObjectType>
+			<ActionType>ActivatePersonal</ActionType>
+			<ObjectFor>
+				<ContractIDT>
+					<RBSNumber>CLIENT_DATA</RBSNumber>
+					<Client>
+						<ClientInfo>
+							<ClientNumber>CLIENT_DATA</ClientNumber>
+						</ClientInfo>
+					</Client>
+				</ContractIDT>
+			</ObjectFor>
+			<Data>
+				<Usage>
+					<Code>Ecom w 3DS</Code>
+					<ActivityPeriod>
+						<Activation>Activate</Activation>
+						<DateFrom>2021-04-07</DateFrom>
+						<DateTo>2021-04-08</DateTo>
+					</ActivityPeriod>
+				</Usage>
+			</Data>
+		</Application>
+	</MsgData>
+</UFXMsg>
+
+Ответ
+<?xml version="1.0" encoding="UTF-8"?>
+<UFXMsg direction="Rs" msg_type="Application" scheme="WAY4Appl" version="2.0" resp_class="I" resp_code="0" resp_text="Successfully processed">
+    <MsgId>9d8a8d7fce31217a6663bb9d2945510</MsgId>
+    <Source app="Web"/>
+    <MsgData>
+        <Application>
+            <RegNumber>AAd019a10bfebcbbdf8e31032021003</RegNumber>
+            <Institution>0038</Institution>
+            <OrderDprt>TXB01</OrderDprt>
+            <ObjectType>Usage</ObjectType>
+            <ActionType>ActivatePersonal</ActionType>
+            <ObjectFor>
+                <ContractIDT>
+                    <RBSNumber>CLIENT_DATA</RBSNumber>
+                    <Client>
+                        <ClientInfo>
+                            <ClientNumber>CLIENT_DATA</ClientNumber>
+                        </ClientInfo>
+                    </Client>
+                </ContractIDT>
+            </ObjectFor>
+            <Data>
+                <Usage>
+                    <Code>Ecom w 3DS</Code>
+                    <MaxAmount>
+                        <Amount>0</Amount>
+                        <Currency>USD</Currency>
+                    </MaxAmount>
+                    <ActivityPeriod>
+                        <Activation>Activate</Activation>
+                        <DateFrom>2021-04-01</DateFrom>
+                        <DateTo>2021-04-02</DateTo>
+                    </ActivityPeriod>
+                </Usage>
+            </Data>
+            <Status>
+                <RespClass>Information</RespClass>
+                <RespCode>0</RespCode>
+                <RespText>Successfully processed</RespText>
+                <PostingStatus>Posted</PostingStatus>
+            </Status>
+        </Application>
+    </MsgData>
+</UFXMsg>

@@ -1,0 +1,66 @@
+SELECT T.IBANID,T.IBAN,
+       T.CMTEXT,T.SHORT_NAME,
+       T.CONTR_STATUS,T.CONTR_STATUS2,T.CUR,T.CNT_DATE,
+       T.DATE_OPEN,T.DATE_EXPIRE,T.BLOCK,T.BALCNCE,
+       T.ClDeposit,T.Dispute,T.OVL,T.BAL_P,T.BAL_M,T.IBAN_BLOCK,T.CARD_BLOCK
+  FROM (SELECT a.id AS IBANID,  a.contract_number AS IBAN,
+               OWS.XWACNT_CONTRACT('CONTR_STATUS',A.CONTR_STATUS) AS CONTR_STATUS,A.CONTR_STATUS AS CONTR_STATUS2,
+               a.curr as CUR,A.COMMENT_TEXT AS CMTEXT,
+               trunc(nvl(OWS.glob.LDATEACNT(a.id), OWS.glob.GET_DB_DATE_WS)) CurrDate,
+               to_date(OWS.glob.get_TAG_VALUE(a.ext_data, 'ACTIVITY_DATE'),'yyyy-mm-dd') AS CNT_DATE,
+               A.DATE_OPEN AS DATE_OPEN,A.DATE_EXPIRE AS DATE_EXPIRE,
+               a.total_blocked AS BLOCK,
+               a.total_balance AS BALCNCE,
+               CL.SHORT_NAME,
+               ABS(nvl((SELECT SUM(acc.current_balance) FROM OWS.account acc
+                    WHERE acc.acnt_contract__oid = a.id AND acc.code in ('P','P5')), 0)) ClDeposit,
+               ABS(nvl((SELECT SUM(acc.current_balance) FROM OWS.account acc
+                    WHERE acc.acnt_contract__oid = A.id AND acc.code = 'D'), 0)) Dispute,
+               ABS(nvl((SELECT SUM(acc.current_balance) FROM OWS.account acc
+                    WHERE acc.acnt_contract__oid = A.id AND UPPER(acc.Account_Name) LIKE '%OVL%'), 0)) OVL,
+                    
+               ABS(nvl((SELECT SUM(acc.current_balance) FROM OWS.account acc
+                    WHERE acc.acnt_contract__oid = A.id AND acc.code NOT IN  ('P','P5','91','D')
+                    AND UPPER(acc.Account_Name) NOT LIKE '%OVL%'
+                    AND ACC.CURRENT_BALANCE > 0 ), 0)) BAL_P,
+
+               ABS(nvl((SELECT SUM(acc.current_balance) FROM OWS.account acc
+                    WHERE acc.acnt_contract__oid = A.id AND acc.code NOT IN  ('P','P5','91','D')
+                    AND UPPER(acc.Account_Name) NOT LIKE '%OVL%'
+                    AND ACC.CURRENT_BALANCE < 0 ), 0)) BAL_M,
+                    
+               nvl((SELECT SUM(AR.BASE_AMOUNT) FROM OWS.AUTH_RECORD AR
+               WHERE AR.CREDIT_STATUS='A' AND AR.SERVICE_CLASS='M'  AND AR.ACNT_CONTRACT__OID=A.ID
+               AND AR.TARGET_NUMBER=A.CONTRACT_NUMBER),0) AS IBAN_BLOCK,
+               nvl((SELECT SUM(AR.BASE_AMOUNT) FROM OWS.AUTH_RECORD AR
+                WHERE AR.CREDIT_STATUS='A' AND AR.SERVICE_CLASS='M'  AND AR.ACNT_CONTRACT__OID=A.ID
+                AND AR.TARGET_NUMBER<>A.CONTRACT_NUMBER),0) AS CARD_BLOCK
+          FROM OWS.acnt_contract a, OWS.CLIENT CL, OWS.CONTR_STATUS S
+         WHERE a.amnd_state = 'A' AND a.pcat = 'C'
+               AND a.ccat = 'P' AND a.con_cat = 'A'
+               AND A.AMOUNT_AVAILABLE > 0
+               --AND A.IS_READY='C'
+               AND A.CONTR_STATUS NOT IN (857,774,713,1125)
+               AND CL.AMND_STATE='A'
+               AND CL.ID=A.CLIENT__ID
+               AND A.CONTR_STATUS=S.ID
+               AND S.AMND_STATE='A'
+               AND S.IS_VALID <> 'V'
+               
+               
+               AND TRIM(A.COMMENT_TEXT) IS NOT NULL
+               AND UPPER(A.COMMENT_TEXT) NOT LIKE '%¡ÀŒ %¬%—¬ﬂ«»%—Œ%—Ã≈–“‹ﬁ%'
+               AND (UPPER(A.COMMENT_TEXT) NOT LIKE '%œ≈–≈¬Œƒ%”—ÀŒ¬»ﬂ%'
+                   OR UPPER(A.COMMENT_TEXT) LIKE '%¿–≈—“%')
+               AND UPPER(A.COMMENT_TEXT)  NOT LIKE '%—Œ√À%«¿ﬂ¬À%'
+               AND UPPER(A.COMMENT_TEXT)  NOT LIKE '%«¿ﬂ¬%'
+               AND UPPER(A.COMMENT_TEXT)  NOT LIKE '%—“¿Õƒ¿–“%'
+               AND (UPPER(A.COMMENT_TEXT)  NOT LIKE '%STANDAR%'
+                   OR UPPER(A.COMMENT_TEXT) LIKE '%¿–≈—“%')
+               AND A.COMMENT_TEXT NOT IN ('ClassicCardCon','GoldCardCon','VirtuonCardCon','ElectronCardCon')
+               
+               AND EXISTS (SELECT 1 FROM OWS.acc_scheme acs
+                           WHERE acs.id = a.acc_scheme__id AND acs.amnd_state = 'A'
+                             AND acs.pcat = a.pcat AND acs.scheme_name LIKE 'Db%'))T
+WHERE  T.CMTEXT<>T.SHORT_NAME
+ORDER BY 3 DESC

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" targetNamespace="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:include schemaLocation="sml-calculationChain.xsd"/>
+    <xs:include schemaLocation="sml-comments.xsd"/>
+    <xs:include schemaLocation="sml-customXmlMappings.xsd"/>
+    <xs:include schemaLocation="sml-externalConnections.xsd"/>
+    <xs:include schemaLocation="sml-queryTable.xsd"/>
+    <xs:include schemaLocation="sml-sharedWorkbookRevisions.xsd"/>
+    <xs:include schemaLocation="sml-sharedWorkbookUserNames.xsd"/>
+    <xs:include schemaLocation="sml-sheetMetadata.xsd"/>
+    <xs:include schemaLocation="sml-singleCellTable.xsd"/>
+    <xs:include schemaLocation="sml-supplementaryWorkbooks.xsd"/>
+    <xs:include schemaLocation="sml-volatileDependencies.xsd"/>
+</xs:schema>
+
+

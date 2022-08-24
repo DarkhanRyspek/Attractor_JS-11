@@ -1,0 +1,23 @@
+<?element xproject "node=file()",Editor=TRootItemEditor ?>
+<!ELEMENT xproject (folder*, (file | shortcut)*)>
+<!ATTLIST xproject
+          xmlns CDATA #FIXED "urn:wmhelp-com:xprj">
+
+<?element folder imageindex=5,node=@Name,Editor=TFolderItemEditor ?>
+<!ELEMENT folder (folder*, file*)>
+<!ATTLIST folder
+          Name CDATA #REQUIRED>
+
+<?element file node=@Name,Editor=TFileItemEditor ?>
+<!ELEMENT file EMPTY>
+<!ATTLIST file
+          Name CDATA #REQUIRED
+          HintPath CDATA ""
+          NamespaceUri CDATA #IMPLIED>
+
+<?element shortcut "node=filename(@href)",Editor=TShortcutItemEditor ?>
+<!ELEMENT shortcut EMPTY>
+<!ATTLIST shortcut
+          href CDATA "">
+
+          

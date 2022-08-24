@@ -1,0 +1,106 @@
+-- CREATED ON 19.06.2018 BY U10097 
+-- ÏÅÐÅÍÎÑ ÑÐÅÄÑÒÂ ÏÎ Ñ×ÅÒÀÌ
+DECLARE
+DOC_ID NUMBER;
+BEGIN
+  FOR REC IN (
+
+SELECT T.ID AS IBAN_ID, T.CONTRACT_NUMBER AS IBAN,T.CURR AS CURR,
+       T.ClDepositP  as AMOUNT ,
+       T.ClDepositP4 ,
+       T.ClDepositP5 
+FROM (SELECT AA.ID,AA.CONTRACT_NUMBER,
+       AA.DATE_OPEN,AA.DATE_EXPIRE,AA.IS_READY,AA.AMOUNT_AVAILABLE,AA.CURR,
+       OWS.XWACNT_CONTRACT('CONTR_STATUS',AA.CONTR_STATUS) AS CONTR_STATUS_MAIN,AA.CONTR_STATUS,
+       OWS.DECR.GET_STATUS_CODE(AA.ID,NULL,NULL,'AUTO_CLS_OFF_SERV')AS IBAN,
+       nvl((SELECT SUM(acc.current_balance) FROM OWS.account acc
+        WHERE acc.acnt_contract__oid = Aa.id AND acc.code in ('P')), 0) ClDepositP,
+        nvl((SELECT SUM(acc.current_balance) FROM OWS.account acc
+        WHERE acc.acnt_contract__oid = Aa.id AND acc.code in ('P4')), 0) ClDepositP4,
+        nvl((SELECT SUM(acc.current_balance) FROM OWS.account acc
+        WHERE acc.acnt_contract__oid = aA.id AND acc.code in ('P5')), 0) ClDepositP5
+  FROM OWS.ACNT_CONTRACT AA, OWS.CLIENT CL
+ WHERE AA.AMND_STATE='A' AND CL.AMND_STATE='A'
+       AND CL.ID=AA.CLIENT__ID 
+       AND AA.AMOUNT_AVAILABLE >0
+       AND AA.ID IN (SELECT T.IBANID
+   FROM (SELECT A.ID AS IBANID,A.CONTRACT_NUMBER AS IBAN,A.IS_READY,
+               A.AMOUNT_AVAILABLE,A.TOTAL_BLOCKED,A.TOTAL_BALANCE,
+               TO_DATE(OWS.RPR.GET_TAG_VALUE(A.EXT_DATA,'ACTIVITY_DATE'),'YYYY-MM-DD') AS ACTIVITY_DATE,
+               OWS.XWACNT_CONTRACT('CONTR_STATUS',A.CONTR_STATUS) AS CONTR_STATUS,A.CONTR_STATUS AS CONTR_STATUS2, A.CURR as CURR,
+               A.DATE_OPEN AS DATE_OPEN,A.DATE_EXPIRE AS DATE_EXPIRE,
+               OWS.DECR.GET_STATUS_CODE(A.ID,NULL,NULL,'RPRO_FULL')|| OWS.DECR.GET_STATUS_CODE(A.ID,NULL,NULL,'RPRO_PARTLY')||
+               OWS.DECR.GET_STATUS_CODE(A.ID,NULL,NULL,'ARREST_PARTLY')|| OWS.DECR.GET_STATUS_CODE(A.ID,NULL,NULL,'ARREST_FULL')||
+               OWS.DECR.GET_STATUS_CODE(A.ID,NULL,NULL,'ARREST_IR')|| OWS.DECR.GET_STATUS_CODE(A.ID,NULL,NULL,'ARREST_PTP') AS ALL_CL,
+               nvl((SELECT SUM(acc.current_balance) FROM OWS.account acc
+               WHERE acc.acnt_contract__oid = a.id AND acc.code in ('P')), 0) ClDepositP,
+               nvl((SELECT SUM(acc.current_balance) FROM OWS.account acc
+               WHERE acc.acnt_contract__oid = a.id AND acc.code in ('P4')),0) ClDepositP4,
+               nvl((SELECT SUM(acc.current_balance) FROM OWS.account acc
+               WHERE acc.acnt_contract__oid = a.id AND acc.code in ('P5')),0) ClDepositP5,
+               ABS(nvl((SELECT SUM(acc.current_balance) FROM OWS.account acc
+               WHERE acc.acnt_contract__oid = A.id AND acc.code = 'D'), 0)) Dispute,
+               ABS(nvl((SELECT SUM(acc.current_balance) FROM OWS.account acc
+               WHERE acc.acnt_contract__oid = A.id AND UPPER(acc.Account_Name) LIKE '%OVL%'), 0)) OVL,
+               ABS(nvl((SELECT SUM(acc.current_balance) FROM OWS.account acc
+               WHERE acc.acnt_contract__oid = A.id AND acc.code IN ('AR','RPRO','TR','P6','P7','P3')), 0)) AS ARPI,
+               ABS(nvl((SELECT SUM(acc.current_balance) FROM OWS.account acc
+               WHERE acc.acnt_contract__oid = A.id AND acc.code NOT IN  ('P','P4','P5','91','D','AR','RPRO','TR','P6','P7','P3','s')
+               AND UPPER(acc.Account_Name) NOT LIKE '%OVL%' AND ACC.CURRENT_BALANCE > 0 ), 0)) BAL_P,
+               ABS(nvl((SELECT SUM(acc.current_balance) FROM OWS.account acc
+               WHERE acc.acnt_contract__oid = A.id AND acc.code NOT IN  ('P','P4','P5','91','D','AR','RPRO','TR','P6','P7','P3','s')
+               AND UPPER(acc.Account_Name) NOT LIKE '%OVL%' AND ACC.CURRENT_BALANCE < 0 ), 0)) BAL_M,
+               nvl((SELECT SUM(AR.BASE_AMOUNT) FROM OWS.AUTH_RECORD AR
+               WHERE AR.CREDIT_STATUS='A' AND AR.SERVICE_CLASS='M'  AND AR.ACNT_CONTRACT__OID=A.ID
+               AND AR.TARGET_NUMBER=A.CONTRACT_NUMBER),0) AS IBAN_BLOCK,
+               nvl((SELECT SUM(AR.BASE_AMOUNT) FROM OWS.AUTH_RECORD AR
+               WHERE AR.CREDIT_STATUS='A' AND AR.SERVICE_CLASS='M'  AND AR.ACNT_CONTRACT__OID=A.ID
+               AND AR.TARGET_NUMBER<>A.CONTRACT_NUMBER),0) AS CARD_BLOCK
+          FROM OWS.acnt_contract a
+         WHERE a.amnd_state = 'A' AND a.pcat = 'C' AND a.con_cat = 'A' AND a.ccat = 'P' 
+               AND A.CONTRACT_NUMBER IN (SELECT S.ADD_DATA3 FROM SBERBANK_CUST.TEMP_WT S WHERE S.INFORM = 'IBAN_CLS2' AND LENGTH(S.ADD_DATA3)=20)
+               AND A.CONTR_STATUS NOT IN (857,774,465,713,1167,1072) /*857-Account Blocked (KFM) 774-Account PTP 465-Account Blocked*/
+               AND EXISTS (SELECT 1 FROM OWS.acc_scheme acs WHERE acs.id = a.acc_scheme__id AND acs.amnd_state = 'A'
+                            AND acs.pcat = a.pcat AND acs.scheme_name LIKE 'Db%'))T
+  WHERE T.Dispute+T.OVL = 0 
+        AND T.ALL_CL NOT LIKE '%Y%'
+        AND T.IBAN_BLOCK+T.CARD_BLOCK = 0
+        AND T.ARPI = 0
+        AND T.BAL_P+T.BAL_M = 0
+        AND T.TOTAL_BLOCKED = 0
+        AND T.ClDepositP+T.ClDepositP4+T.ClDepositP5 <> 0
+        AND OWS.FX.MIDDLE_RATE(NULL,'724',NULL,T.CURR,'398',T.ClDepositP,SYSDATE)+
+            OWS.FX.MIDDLE_RATE(NULL,'724',NULL,T.CURR,'398',T.ClDepositP4,SYSDATE)+
+            OWS.FX.MIDDLE_RATE(NULL,'724',NULL,T.CURR,'398',T.ClDepositP5,SYSDATE) < 5001))T
+WHERE T.ClDepositP > 0
+
+       )
+  LOOP
+  SELECT OWS.DOC_SEQ.NEXTVAL INTO DOC_ID FROM DUAL;
+  
+  INSERT INTO OWS.DOC(ACQ_REF_NUMBER, ACTION, AMND_DATE, AMND_OFFICER, AMND_STATE, AUTH_CODE, CARD_EXPIRE, CARD_SEQV_NUMBER, FX_SETTL_DATE, 
+                    IS_AUTHORIZATION, ISS_REF_NUMBER, MERCHANT_ID, MESSAGE_CATEGORY, NUMBER_OF_SUB_S, NW_REF_DATE, DOC__ORIG__ID, OUTWARD_STATUS, 
+                    POSTING_DATE, POSTING_STATUS, DOC__PREV__ID, AMND_PREV, PS_REF_NUMBER, REASON_CODE, REASON_DETAILS, REC_MEMBER_ID, RECONS_AMOUNT, RECONS_CURR,
+                    ID, REQUEST_CATEGORY, REQUIREMENT, RET_REF_NUMBER, RETURN_CODE, SEC_TRANS_COND_ATT, SEC_TRANS_DATE, SENDING_BIN, SEND_MEMBER_ID, SERVICE_CLASS,
+                    SETTL_AMOUNT, SETTL_CURR, SIC_CODE, SOURCE_ACC_TYPE, S_CAT, SOURCE_CHANNEL, SOURCE_CODE, SOURCE_CONTRACT, SOURCE_FEE_AMOUNT, SOURCE_FEE_CODE, 
+                    SOURCE_FEE_CURR, SOURCE_MEMBER_ID, SOURCE_NUMBER, SOURCE_REG_NUM, SOURCE_SPC, DOC__SUMM__ID, 
+                    TARGET_ACC_TYPE, TARGET_BIN_ID, T_CAT, TARGET_CHANNEL, TARGET_CODE, TARGET_CONTRACT, TARGET_FEE_AMOUNT, TARGET_FEE_CODE, TARGET_FEE_CURR, 
+                    TARGET_MEMBER_ID, TARGET_NUMBER, TARGET_SPC, TRANS_AMOUNT, TRANS_CITY, TRANS_COND_ATTR, TRANS_CONDITION, TRANS_COUNTRY, TRANS_CURR, 
+                    TRANS_DATE, TRANS_DETAILS, TRANS_STATE, PARTITION_KEY, TRANS_TYPE, SYNCH_TAG, SOURCE_IDT_SCHEME, SOURCE_SERVICE, TARGET_IDT_SCHEME, 
+                    TARGET_SERVICE, BIN_RECORD, NUMBER_IN_CHAIN, ADD_INFO, CHANGE_VERSION)
+VALUES(NULL,NULL,SYSDATE,46726,'A',NULL,NULL,NULL,NULL,
+       'N',NULL,NULL,'U',1,NULL,NULL,'W',
+       NULL,'W',NULL,DOC_ID,NULL,NULL,NULL,NULL,0,NULL,
+       DOC_ID,'P',NULL,NULL,0,NULL,NULL,NULL,NULL,'A',
+       REC.AMOUNT,REC.CURR,NULL,'P',NULL,NULL,NULL,REC.IBAN_ID,0,NULL,
+       NULL,NULL,REC.IBAN,NULL,NULL,NULL,
+       'J',NULL,NULL,NULL,NULL,357546,0,NULL,NULL,
+       NULL,'038-INTERESTS',NULL,REC.AMOUNT,NULL,NULL,NULL,NULL,REC.CURR,
+       SYSDATE,'Ñïèñàíèå â ñâÿçè ñ çàêðûòèå ïëàòåæíîé êàðòû',NULL,'X',NULL,NULL,NULL,NULL,NULL,
+       NULL,NULL,NULL,NULL,0);
+
+
+DBMS_OUTPUT.put_line(REC.IBAN||' '||DOC_ID||' '||REC.IBAN_ID||' '||REC.AMOUNT||' '||'OK');
+END LOOP;
+COMMIT;
+END;

@@ -1,0 +1,23 @@
+<UFXMsg direction="Rq" msg_type="Doc" scheme="WAY4Doc" version="2.0">
+    <MsgId>211194</MsgId>
+    <Source app="W4G"/>
+    <MsgData>
+        <Doc>
+            <TransType>
+                <TransCode>
+                    <MsgCode>check_currency_exchange</MsgCode>
+               </TransCode>
+            </TransType>
+            <Requestor>
+                <ContractNumber>XML-AA-41_27_acc_KZT</ContractNumber>
+            </Requestor>
+            <Destination>
+                <ContractNumber>XML-AA-41_27_acc_USD</ContractNumber>
+            </Destination>
+            <Transaction>
+                <Currency>USD</Currency>
+                <Amount>1.45</Amount>
+            </Transaction>
+        </Doc>
+    </MsgData>
+</UFXMsg>

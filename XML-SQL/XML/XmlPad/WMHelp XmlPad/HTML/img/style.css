@@ -1,0 +1,54 @@
+BODY {
+	SCROLLBAR-FACE-COLOR: #dee3e7; FONT: 10px MS Sans Serif, verdana, arial, sans-serif; SCROLLBAR-HIGHLIGHT-COLOR: #ffffff; SCROLLBAR-SHADOW-COLOR: #dee3e7; COLOR: #006699; SCROLLBAR-3DLIGHT-COLOR: #d1d7dc; SCROLLBAR-ARROW-COLOR: #006699; SCROLLBAR-TRACK-COLOR: #efefef; SCROLLBAR-DARKSHADOW-COLOR: #98aab1
+}
+TD {
+	FONT: 10px MS Sans Serif, verdana, arial, sans-serif; COLOR: #006699
+}
+TH {
+	FONT: 10px MS Sans Serif, verdana, arial, sans-serif; COLOR: #006699
+}
+.BOD {
+	FONT: 10px MS Sans Serif, verdana, arial, sans-serif; COLOR: #006699
+}
+A:link {
+	FONT: 10px MS Sans Serif, verdana, arial, sans-serif; COLOR: #006699; TEXT-DECORATION: none
+}
+A:visited {
+	FONT: 10px MS Sans Serif, verdana, arial, sans-serif; COLOR: #006699; TEXT-DECORATION: none
+}
+A:active {
+	FONT: 10px MS Sans Serif, verdana, arial, sans-serif; COLOR: #006699; TEXT-DECORATION: none
+}
+A:hover {
+	FONT: 10px MS Sans Serif, verdana, arial, sans-serif; COLOR: #ff6900; TEXT-DECORATION: none
+}
+.orange {
+	FONT-SIZE: 10px; BACKGROUND: none transparent scroll repeat 0% 0%; COLOR: #ff6900; FONT-FAMILY: MS Sans Serif, verdana, arial, sans-serif
+}
+.option {
+	FONT-SIZE: 10px; BACKGROUND: none transparent scroll repeat 0% 0%; COLOR: #ff6900; FONT-FAMILY: MS Sans Serif, verdana, arial, sans-serif
+}
+FONT {
+	FONT-SIZE: 10px; BACKGROUND: none transparent scroll repeat 0% 0%; COLOR: #000000; FONT-FAMILY: MS Sans Serif, verdana, arial, sans-serif
+}
+.tite {
+	FONT-SIZE: 12px; BACKGROUND: none transparent scroll repeat 0% 0%; COLOR: #000000; FONT-FAMILY: MS Sans Serif, verdana, arial, sans-serif
+}
+.bodyline {
+	BORDER-RIGHT: #98aab1 1px solid; BORDER-TOP: #98aab1 1px solid; BORDER-LEFT: #98aab1 1px solid; BORDER-BOTTOM: #98aab1 1px solid; BACKGROUND-COLOR: #ffffff
+}
+.cat {
+	BORDER-RIGHT: #ffffff 0px solid; BORDER-TOP: #ffffff 0px solid; BORDER-LEFT: #ffffff 0px solid; BORDER-BOTTOM: #ffffff 0px solid; HEIGHT: 29px; BACKGROUND-COLOR: #d1d7dc
+}
+.btn {
+	BORDER-TOP-WIDTH: 1px; FONT-WEIGHT: 700; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 11px; BACKGROUND: #828da6; BORDER-BOTTOM-WIDTH: 1px; CURSOR: hand; COLOR: white; FONT-FAMILY: Tahoma; HEIGHT: 24px; BORDER-RIGHT-WIDTH: 1px
+}
+INPUT {
+	FONT-SIZE: 10px; FONT-FAMILY: MS Sans Serif, Helvetica, sans-serif; BACKGROUND-COLOR: #efefef
+}
+TEXTAREA {
+	FONT-SIZE: 10px; FONT-FAMILY: MS Sans Serif, Helvetica, sans-serif; BACKGROUND-COLOR: #efefef
+}
+SELECT {
+	FONT-SIZE: 10px; FONT-FAMILY: MS Sans Serif, Helvetica, sans-serif; BACKGROUND-COLOR: #efefef
+}

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:wmh="http://www.wmhelp.com/rssext">
+  <channel>
+    <title>WMHelp.com news channel</title>
+    <link>http://www.wmhelp.com/</link>
+    <description>WMHelp.com is an international team of software developers</description>
+    <language>en-us</language>
+    <copyright>Copyright © WMHelp Software, 2003-2005</copyright>
+    <lastBuildDate>Mon, 18 Jul 2005 10:00:00 GMT</lastBuildDate>
+    <ttl>60</ttl>
+    <item>
+      <title>XMLPad 2.0 is available for download.</title>
+      <link>http://www.wmhelp.com/xmlpad2.htm</link>
+      <description>The second version of popular XML editor - XMLPad 2.0 is available for download. With almost twice
+        smaller setup the new version contains a lot of new features in addition to new improved XML parser... </description>
+      <pubDate>Wed, 01 Jun 2005 08:00:00 GMT</pubDate>
+      <guid>02456417-E6C0-4FB5-9304-CF30BE083917</guid>
+    </item>
+    <item>
+      <title>&lt;xml:Pad/&gt; is available for download.</title>
+      <link>http://www.wmhelp.com/xmlpad.htm</link>
+      <description>&lt;xml:Pad/&gt; is a small yet powerful XML editor based on
+        the unique custom-developed XML parser engine designed in accordance with
+        the published W3C standards by WMHelp.com. &lt;xml:Pad/&gt; is a basic version of
+        the WMHelp.com eGenerator development solution, distributed under the freeware
+        license.</description>
+      <pubDate>Wed, 06 Oct 2004 08:00:00 GMT</pubDate>
+      <guid>2B367B9F-CDBC-486C-88BC-F9E010A9AADF</guid>
+    </item>
+    <item>
+      <title>WMHelp.com is back.</title>
+      <description>WMHelp.com is back.</description>
+      <pubDate>Wed, 01 Sep 2004 08:00:00 GMT</pubDate>
+      <guid>BA84A979-D429-4F2E-A363-6F7A41D7231B</guid>
+    </item>
+    <item>
+      <title>WMHelp.com changing colocation.</title>
+      <description>WMHelp.com will be unavailable due to change the colocation provider.
+         The mail will work on the mirror site, so you may be able to contact with support.
+         Sorry for any inconvinience.</description>
+      <pubDate>Tue, 01 Jun 2004 08:00:00 GMT</pubDate>
+      <guid>40025878-FEB4-43FE-9D93-B680FC13E3FA</guid>
+    </item>
+    <item>
+      <title>EDI SEFViewer is not available for purchase anymore.</title>
+      <description>WMHelp.com will be unavailable due to change the colocation provider.
+         The mail will work on the mirror site, so you may be able to contact with support.
+         Sorry for any inconvinience.</description>
+      <pubDate>Fri, 30 Apr 2004 08:00:00 GMT</pubDate>
+      <guid>DA51489B-61AD-4533-82C9-91DC1CEBF3AF</guid>
+    </item>
+    <item>
+      <title>EDI SEFViewer is avaialble for download.</title>
+      <link>http://www.wmhelp.com/SEFViewer.htm</link>
+      <description>WMHelp.com SEF Viewer is used to simplify the use and access
+         to EDI (Electronic Data Interchange) standard structures distributed in
+         SEF (Standard Exchange Format) file.</description>
+      <pubDate>Wed, 01 Oct 2003 08:00:00 GMT</pubDate>
+      <guid>92597628-D5F2-431B-BC09-6E66C644E885</guid>
+    </item>
+    <item>
+      <title>WMHelp.com is opened.</title>
+      <link>http://www.wmhelp.com/about.htm</link>
+      <description>WMHelp.com is an international team of software developers
+         providing solutions for enterprise software development. Our mission is
+         to build tools and components that foster the creativity of developers
+         without imposing undue burdens on their ability to meet deadlines,
+         design "killer" apps, and achieve their personal goals and objectives.
+         Creating friendly, fast and complete solutions is the basic WMHelp.com principle. </description>
+      <pubDate>Tue, 01 Oct 2003 08:00:00 GMT</pubDate>
+      <guid>37BD6A21-6CFA-4DCD-9DD0-1BA894A17A51</guid>
+    </item>
+  </channel>
+</rss>

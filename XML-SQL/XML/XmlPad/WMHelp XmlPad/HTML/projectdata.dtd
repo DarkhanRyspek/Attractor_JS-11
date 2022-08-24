@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--eGenerator DTD to XSD transformation module (http://www.WMHelp.com)-->
+<!--DTD generated for -->
+<!ELEMENT data (item | recent)+>
+<!ELEMENT item EMPTY>
+<!ATTLIST item
+          projectName CDATA #REQUIRED
+          lastOpen CDATA #REQUIRED
+          href CDATA #REQUIRED>
+          
+<!ELEMENT recent EMPTY>
+<!ATTLIST recent
+          name CDATA #REQUIRED
+          href CDATA #REQUIRED>

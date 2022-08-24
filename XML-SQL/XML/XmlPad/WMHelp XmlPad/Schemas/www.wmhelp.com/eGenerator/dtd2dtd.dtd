@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ENTITY % occurs "required | optional | required_repeat | optional_repeat">
+
+<?element Document "node=filename()",ImageIndex=56,Editor=TDTDRootEditor?>
+<!ELEMENT Document (ElementDecl | AttlistDecl | Comment | PI |
+   PEEntityDecl | GEEntityDecl)*>
+
+<?element Comment ImageIndex=55 Editor=TDTDCommentEditor?>
+<!ELEMENT Comment EMPTY>
+<!ATTLIST Comment
+          Text CDATA "">
+
+<?element ElementDecl ImageIndex=58,"node=@Name",Editor=TDTDElementDeclEditor?>
+<!ELEMENT ElementDecl (choice | sequence | mixed | any)>
+<!ATTLIST ElementDecl
+          Name CDATA #REQUIRED>
+          
+<!ELEMENT any EMPTY>
+
+<?element choice ImageIndex=61,Editor=TDTDChoiceOrSequenceEditor?>
+<!ELEMENT choice (choice | sequence | Element)+>
+<!ATTLIST choice
+          occurs (%occurs;) "required">
+
+<?element sequence ImageIndex=60,Editor=TDTDChoiceOrSequenceEditor?>
+<!ELEMENT sequence (choice | sequence | Element)+>
+<!ATTLIST sequence
+          occurs (%occurs;) "required">
+          
+<!ELEMENT mixed (Element)*>
+
+<?element Element "node=@Name",Editor=TDTDElementRefEditor?>
+<!ELEMENT Element EMPTY>
+<!ATTLIST Element
+          Name CDATA #REQUIRED
+          occurs (%occurs;) "required">
+
+<?element AttlistDecl ImageIndex=59,"node=@Name",Editor=TDTDAttlistDeclEditor?>
+<!ELEMENT AttlistDecl (Attribute)*>
+<!ATTLIST AttlistDecl
+          Name CDATA #REQUIRED>
+
+<?element Attribute ImageIndex=60,"node=@Name",Editor=TDTDAttributeEditor?>
+<!ELEMENT Attribute (Enumeration)*>
+<!ATTLIST Attribute
+          Name CDATA #REQUIRED
+          Type (CDATA | ID | IDREF | IDREFS | ENTITY | ENTITYS | NMTOKEN | NMTOKENS | NOTATION) "CDATA"
+          Modifier (Required | Implied | Fixed) ""
+          DefaultValue CDATA "">
+
+<?element Enumeration ImageIndex=46,"node=@Value",Editor=TDTDEnumeration?>
+<!ELEMENT Enumeration EMPTY>
+<!ATTLIST Enumeration
+          Value CDATA #REQUIRED>
+
+<?element GEEntityDecl "node=@Name",ImageIndex=57?>
+<!ELEMENT GEEntityDecl (EntityValue | (ExternalID, NDataDecl?))>
+<!ATTLIST GEEntityDecl
+          Name CDATA #REQUIRED>
+
+<?element PEEntityDecl "node=@Name",ImageIndex=57?>
+<!ELEMENT PEEntityDecl (EntityValue)>
+<!ATTLIST PEEntityDecl
+          Name CDATA #REQUIRED>
+
+<?element EntityValue ImageIndex=46,"node=@Value"?>
+<!ELEMENT EntityValue EMPTY>
+<!ATTLIST EntityValue
+          Value CDATA #REQUIRED>
+          
+<!ELEMENT ExternalID EMPTY>
+<!ATTLIST ExternalID
+          SysId CDATA #REQUIRED
+          PubId CDATA "">
+
+<?element NDataDecl ImageIndex=73,"node=@Name"?>
+<!ELEMENT NDataDecl EMPTY>
+<!ATTLIST NDataDecl
+          Name CDATA #REQUIRED>
+
+<?element PI ImageIndex=54,"node=@Target"?>
+<!ELEMENT PI EMPTY>
+<!ATTLIST PI
+          Target CDATA #REQUIRED
+          Data CDATA "">
+

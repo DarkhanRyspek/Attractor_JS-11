@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<appinfo>
+   <elements>
+      <element name="stylesheet" Editor="TXSLStylesheetElementEditor"/>
+   </elements>
+<reports>
+  <target Name="0">
+  </target>
+</reports>
+</appinfo>

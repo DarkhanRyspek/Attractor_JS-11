@@ -1,0 +1,37 @@
+<UFXMsg direction="Rq" msg_type="Application" scheme="WAY4Appl" version="2.0">
+	<MsgId>d3fae813-dc8d-4080-b0bb-9ba9b37c5634</MsgId>
+	<Source app="W4G"/>
+	<MsgData>
+		<Application>
+			<RegNumber>d3fae813-dc8d-4080-b0bb-9ba9b37c5635</RegNumber>
+			<Institution>0038</Institution>
+			<OrderDprt>SPF97AL</OrderDprt>
+			<ObjectType>Event</ObjectType>
+			<ActionType>Add</ActionType>
+			<ResultDtls>
+				<Parm>
+					<ParmCode>AcceptRq</ParmCode>
+					<Value>Y</Value>
+				</Parm>
+			</ResultDtls>
+			<ObjectFor>
+				<ContractIDT>
+					<ContractNumber>CLIENT_DATA</ContractNumber>
+					<RBSNumber>CLIENT_DATA</RBSNumber>
+					<Client>
+						<ClientInfo>
+							<ClientNumber>CLIENT_DATA</ClientNumber>
+							<ShortName>CLIENT_DATA</ShortName>
+						</ClientInfo>
+					</Client>
+				</ContractIDT>
+			</ObjectFor>
+			<Data>
+				<QueEvent>
+					<ActionCode>REST_TRANS_AB</ActionCode>
+					<Comment>Перенос остатков на благотворительность</Comment>
+				</QueEvent>
+			</Data>
+		</Application>
+	</MsgData>
+</UFXMsg>

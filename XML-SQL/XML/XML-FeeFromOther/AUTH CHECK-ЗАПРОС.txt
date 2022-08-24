@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UFXMsg direction="Rq" msg_type="Doc" scheme="WAY4Doc" version="2.0">
+	<MsgId>C1C259EF5A26AA965B14746R9899</MsgId>
+	<Source app="W4G"/>
+	<MsgData>
+		<Doc>
+			<TransType>
+				<TransCode>
+					<MsgCode>VRQPFICOPAYFEE</MsgCode>
+				</TransCode>
+			</TransType>
+			<DocRefSet>
+				<Parm>
+					<ParmCode>SRN</ParmCode>
+					<Value>CLIENT_DATA</Value>
+				</Parm>
+			</DocRefSet>
+			<LocalDt>2021-01-21 17:29:30</LocalDt>
+			<Description>CLIENT_DATA</Description>
+			<Requestor>
+				<ContractNumber>CLIENT_DATA</ContractNumber>
+			</Requestor>
+			<Source>
+				<ContractNumber>CLIENT_DATA</ContractNumber>
+			</Source>
+			<Transaction>
+				<Currency>KZT</Currency>
+				<Amount>5500.0</Amount>
+				<Extra>
+					<Type>AddInfo</Type>
+					<Details>FEE CARD REPLACE</Details>
+				</Extra>
+			</Transaction>
+		</Doc>
+	</MsgData>
+</UFXMsg>

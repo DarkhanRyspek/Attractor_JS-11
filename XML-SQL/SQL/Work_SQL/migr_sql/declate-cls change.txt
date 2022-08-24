@@ -1,0 +1,32 @@
+-- MgrScript_Set_Classif_TPLAN
+DECLARE
+  LocalDate  dtype. CurrentDate %TYPE;
+  SkipReason dtype. ErrorMessage %TYPE;
+  StatusID   dtype. RecordID %TYPE;
+  ValueID    dtype. RecordID %TYPE;
+  ErrMsg     dtype. ErrorMessage %TYPE;
+  RetCode    dtype. Counter      %Type;
+BEGIN
+  RetCode := stnd.PROCESS_START('MgrScript_Set_Classif_TPALN', 'CustVer=20201207-001', stnd.Yes);
+  LocalDate := glob.GET_DB_DATE_WS;
+  FOR CUR IN (
+ SELECT A.ID AS main_acc_id, A.CONTRACT_NUMBER,
+       OWS.DECR.GET_STATUS_CODE(A.ID,NULL,NULL,'TARIFF_PLAN') AS CLS
+  FROM SBERBANK_CUST.TEMP_WT W,OWS.ACNT_CONTRACT A
+ WHERE W.INFORM = 'MIGR_VISAPLATSAL_050521_OLD' AND W.ADD_DATA2='MIGR0'
+       AND A.AMND_STATE='A' AND A.ID=W.ID2 AND A.IS_READY='Y'
+       AND SUBSTR(A.CONTRACT_NUMBER,1,1)='4'
+       AND OWS.XWACNT_CONTRACT('PARENT_PRODUCT',A.PARENT_PRODUCT) LIKE '%TPLAN%'
+       AND OWS.DECR.GET_STATUS_CODE(A.ID,NULL,NULL,'TARIFF_PLAN') IN ('TP VISA PLATINUM PAID')  /*TP VISA INFINIT BRILL PAID*/
+)
+  LOOP
+    decr.GET_STATUS_VALUE(CUR.MAIN_ACC_ID, NULL, NULL, 'TARIFF_PLAN', 'TP VISA PLATINUM FREE',   /* TP VISA PLATINUM FREE */
+                              StatusID, ValueID, ErrMsg);
+          decr.SET_STATUS(CUR.MAIN_ACC_ID, NULL, NULL, StatusID, ValueID, 
+                          NULL, NULL, NULL, NULL, 
+                          'Custom start CS for Product', SkipReason);
+          stnd.PROCESS_MESSAGE(stnd.Information, 'Set AutoClose Status for contract_id = ' || CUR.MAIN_ACC_ID);
+  
+  END LOOP;
+    stnd.PROCESS_END;
+  END;

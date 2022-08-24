@@ -1,0 +1,74 @@
+declare
+  ConCount   ows.dtype.RecordID%type;
+  ProcID   ows.dtype.RecordID%type;
+  ContractID  ows.dtype.RecordID%type;
+  ClientID  ows.dtype.RecordID%type;
+  SchemeID  ows.dtype.RecordID%Type;
+  RetCode  ows.dtype.Counter%Type;
+  ErrMsg  ows.dtype.ErrorMessage%Type;
+  
+begin
+  ProcID:=ows.stnd.PROCESS_START('Enroll 3D','Manual script','N');
+  ConCount:=0;
+  for i in (
+select 
+ac.id, 
+ac.client__id,
+(select 'Y' from ows.TD_AUTH_SCH t 
+     where t.amnd_state='A'
+       and t.auth_type in (1)
+       and t.is_ready<>'C'
+       and t.acnt_contract__id=ac.id
+       and rownum=1) Basic, 
+(select 'Y' from ows.TD_AUTH_SCH t 
+     where t.amnd_state='A'
+       and t.auth_type in (2)
+       and t.is_ready<>'C'
+       and t.acnt_contract__id=ac.id
+       and rownum=1) Enroll,
+(select 'Y' from ows.TD_AUTH_SCH t 
+     where t.amnd_state='A'
+       and t.auth_type in (26)
+       and t.is_ready<>'C'
+       and t.acnt_contract__id=ac.id
+       and rownum=1) otp,
+ac.contract_number                     
+from ows.acnt_contract ac
+where ac.amnd_state='A' 
+and ac.con_cat='C' 
+and ac.ccat in ('P','C')  
+and ac.card_expire>='1705'
+and ac.is_ready<>'C' 
+and ac.contr_status<>109
+and ac.contr_type in (32,31,23,44)
+and not exists ((select 'Y' from ows.TD_AUTH_SCH t 
+     where t.amnd_state='A'
+       and t.auth_type in (2)
+       and t.is_ready<>'C'
+       and t.acnt_contract__id=ac.id
+       and t.acnt_contract__id=ac.id))   
+) 
+  loop
+     ContractID := i.id;
+     ClientID := i.client__id;
+     ConCount:=ConCount+1;
+    
+     if ConCount mod 2000 = 0 then
+        commit;
+       ows.stnd.PROCESS_MESSAGE(ows.stnd.information, 'Processed '||ConCount||' contracts');
+     end if;
+     if i.otp is null then 
+       ows.tda.ENROLL(ContractID, ClientID, 'OTP_SMS', null, ows.glob.LDATEACNT(ContractID), null, SchemeId, RetCode, ErrMsg);
+     end if;  
+     if i.Basic is null then       
+       ows.tda.ENROLL(ContractID, ClientID, 'BASIC', null, ows.glob.LDATEACNT(ContractID), null, SchemeId, RetCode, ErrMsg);
+     end if;  
+     if i.Enroll is null then 
+       ows.tda.ENROLL(ContractID, ClientID, 'TDS_ENROLL', null, ows.glob.LDATEACNT(ContractID), null, SchemeId, RetCode, ErrMsg);
+     end if;  
+  end loop;
+
+  ows.stnd.PROCESS_MESSAGE(ows.stnd.information,'Finished processing.');
+  ows.stnd.PROCESS_END;
+ commit;
+end;

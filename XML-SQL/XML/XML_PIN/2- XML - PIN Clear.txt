@@ -1,0 +1,63 @@
+<UFXMsg direction="Rq" msg_type="Application" scheme="WAY4Appl" version="2.0">
+	<MsgId>D92F26CA21FFA1565214968BB8E64034</MsgId>
+	<Source app="W4G" /> 
+	<MsgData>
+		<Application> /*яапня охмю*/
+			<RegNumber>PC_APL_AC_123_19_0000004101_01</RegNumber>
+			<Institution>0038</Institution>
+			<OrderDprt>UDORUD</OrderDprt>
+			<ObjectType>Contract</ObjectType>
+			<ActionType>ClearPINAttempts</ActionType>
+			<ResultDtls>
+				<Parm>
+					<ParmCode>AcceptRq</ParmCode>
+					<Value>Y</Value>
+				</Parm>
+			</ResultDtls>
+			<ObjectFor>
+				<ContractIDT>
+					<ContractNumber>мнлеп йюпрш</ContractNumber>
+					<Client>
+						<ClientInfo>
+							<SocialNumber>дюммше йкхемрю</SocialNumber>
+							<ShortName>дюммше йкхемрю</ShortName>
+						</ClientInfo>
+					</Client>
+				</ContractIDT>
+			</ObjectFor>
+			<SubApplList>  /*хмхжхпсел йнлхяяхч*/
+				<Application>
+					<RegNumber>PC_APL_AC_123_19_0000004102_02</RegNumber>
+					<Institution>0038</Institution>
+					<OrderDprt>RKO66</OrderDprt>
+					<ObjectType>Event</ObjectType>
+					<ActionType>Add</ActionType>
+					<ResultDtls>
+						<Parm>
+							<ParmCode>AcceptRq</ParmCode>
+							<Value>Y</Value>
+						</Parm>
+					</ResultDtls>
+					<ObjectFor>
+						<ContractIDT>
+							<ContractNumber>дюммше йкхемрю</ContractNumber>
+							<Client>
+								<ClientInfo>
+									<SocialNumber>дюммше йкхемрю</SocialNumber>
+									<ShortName>дюммше йкхемрю</ShortName>
+								</ClientInfo>
+							</Client>
+						</ContractIDT>
+					</ObjectFor>
+					<Data>
+						<QueEvent>
+							<ActionCode>CLEAR_PIN_ATT_ERR</ActionCode>
+							<Comment>яАПНЯ ЯВЕРВХЙЮ ОН PIN</Comment>
+						</QueEvent>
+					</Data>
+				</Application>
+			</SubApplList>
+		</Application>
+	</MsgData>
+</UFXMsg>
+

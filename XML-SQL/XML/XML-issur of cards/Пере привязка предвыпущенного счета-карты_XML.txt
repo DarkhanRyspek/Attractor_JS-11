@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UFXMsg direction="Rq" msg_type="Application" scheme="WAY4Appl" version="2.0">
+	<MsgId>CD3AEB4AD2A782BC5E145AFE087A2817</MsgId>
+	<Source app="W4G"/>
+	<MsgData>
+		<Application> /*лхцпюжхъ яверю-йюпрш*/
+			<RegNumber>PC_APL_XX_331_19_0000000009_01</RegNumber>
+			<Institution>0038</Institution>
+			<OrderDprt>TXB99</OrderDprt>
+			<ObjectType>Contract</ObjectType>
+			<ActionType>Update</ActionType>
+			<ResultDtls>
+				<Parm>
+					<ParmCode>AcceptRq</ParmCode>
+					<Value>Y</Value>
+				</Parm>
+			</ResultDtls>
+			<ObjectFor>
+				<ContractIDT>
+					<ContractNumber>явер хмярюмр йюпрш</ContractNumber>
+					<RBSNumber>дюммше хмярюмр йкхемрю</RBSNumber>
+					<Client>
+						<ClientInfo>
+							<ClientNumber>дюммше хмярюмр йкхемрю</ClientNumber>
+							<ShortName>дюммше хмярюмр йкхемрю</ShortName>
+						</ClientInfo>
+					</Client>
+				</ContractIDT>
+			</ObjectFor>
+			<Data>
+				<Contract>
+					<ServiceGroup>Standart SB</ServiceGroup>
+					<ContractIDT>
+						<Client>
+							<ClientInfo>
+								<ClientNumber>дюммше йкхемрю</ClientNumber>
+								<ShortName>дюммше йкхемрю</ShortName>
+							</ClientInfo>
+						</Client>
+					</ContractIDT>
+					<Product>
+						<ProductCode1>йнд опндсйрю яверю</ProductCode1>
+					</Product>
+					<PlasticInfo/>
+					<DateOpen>2019-11-27</DateOpen>
+					<AddContractInfo>
+						<ChangeClient>All</ChangeClient>
+					</AddContractInfo>
+				</Contract>
+			</Data>
+			<SubApplList>
+				<Application> /*ялемю опндсйрю*/
+					<RegNumber>PC_APL_XX_331_19_0000000010_02</RegNumber>
+					<Institution>0038</Institution>
+					<OrderDprt>TXB99</OrderDprt>
+					<ObjectType>Contract</ObjectType>
+					<ActionType>Update</ActionType>
+					<ResultDtls>
+						<Parm>
+							<ParmCode>AcceptRq</ParmCode>
+							<Value>Y</Value>
+						</Parm>
+					</ResultDtls>
+					<ObjectFor>
+						<ContractIDT>
+							<ContractNumber>хмярюмр йюпрю</ContractNumber>
+							<RBSNumber>хмярюрмр йюпрю</RBSNumber>
+							<Client>
+								<ClientInfo>
+									<ClientNumber>дюммше йкхемрю</ClientNumber>
+								</ClientInfo>
+							</Client>
+						</ContractIDT>
+					</ObjectFor>
+					<Data>
+						<Contract>
+							<ServiceGroup>Standart SB</ServiceGroup>
+							<Product>
+								<ProductCode1>йнд мнбнцн яса-опндсйрю</ProductCode1>
+							</Product>
+							<PlasticInfo/>
+							<DateOpen>2019-11-27</DateOpen>
+						</Contract>
+					</Data>
+				</Application>
+			</SubApplList>
+		</Application>
+	</MsgData>
+</UFXMsg>

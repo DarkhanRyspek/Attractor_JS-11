@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UFXMsg direction="Rq" msg_type="Application" scheme="WAY4Appl" version="2.0">
+	<MsgId>D501A19D5BA7CF8C61144E60C047E34B</MsgId>
+	<Source app="W4G"/>
+	<MsgData>
+		<Application>
+			<RegNumber>PC_APL_RC_005_20_0000000376_03</RegNumber>
+			<Institution>0038</Institution>
+			<OrderDprt>TXB11</OrderDprt>
+			<ObjectType>Client</ObjectType>
+			<ActionType>Update</ActionType>
+			<ResultDtls>
+				<Parm>
+					<ParmCode>AcceptRq</ParmCode>
+					<Value>Y</Value>
+				</Parm>
+			</ResultDtls>
+			<ObjectFor>
+				<ClientIDT>
+					<ClientInfo>
+						<SocialNumber>дюммше йкхемрю</SocialNumber>
+						<ShortName>дюммше йкхемрю</ShortName>
+					</ClientInfo>
+				</ClientIDT>
+			</ObjectFor>
+			<Data>
+				<Client>
+					<ClientInfo>
+						<SecurityName>дюммше йкхемрю</SecurityName>
+					</ClientInfo>
+				</Client>
+			</Data>
+		</Application>
+	</MsgData>
+</UFXMsg>

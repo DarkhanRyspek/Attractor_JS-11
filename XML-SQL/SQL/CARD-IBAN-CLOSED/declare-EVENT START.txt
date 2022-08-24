@@ -1,0 +1,81 @@
+-- CREATED ON 21.10.2019 BY U10097 
+-- EVENT START
+DE-CLARE
+  UAID1 VARCHAR2(150);
+  UAID2 VARCHAR2(150);
+  BEGIN
+
+    FOR REC IN (
+              SELECT W.ID1,W.ADD_DATA1,
+                     A.ID AS AC_ID,A.CONTRACT_NUMBER,
+                     (SELECT ET.ID FROM OWS.EVENT_TYPE ET
+                     WHERE ET.AMND_STATE='A' AND ET.CODE='SMS_INACT_ACC') AS EV_ID1,
+                     (SELECT ET.ID FROM OWS.EVENT_TYPE ET
+                     WHERE ET.AMND_STATE='A' AND ET.CODE='CLS_CNTR_DELAY') AS EV_ID2  
+                FROM SBERBANK_CUST.TEMP_WT W, OWS.ACNT_CONTRACT A
+               WHERE W.INFORM='INAC_SMS_NOEVNT' AND A.AMND_STATE='A'
+                     AND W.ADD_DATA1=A.CONTRACT_NUMBER
+                     AND A.DATE_EXPIRE IS  NULL
+                     AND A.AMOUNT_AVAILABLE = 0
+                     AND (SELECT COUNT(*) FROM OWS.USAGE_ACTION U WHERE U.EVENT_TYPE IN (6778) AND U.ACNT_CONTRACT__ID=A.ID) = 0
+                    AND A.ID >= 15534889
+                    AND ROWNUM <= 2500       
+                                       )  
+    LOOP
+      
+    UAID1 := OWS.API.PUT_EVENT(REC.EV_ID2,
+                          REC.AC_ID,
+                          NULL,
+                          SYSDATE,
+                          'Closed Old Event '||REC.AC_ID);
+
+    UAID2 := OWS.API.PUT_EVENT(REC.EV_ID1,
+                          REC.AC_ID,
+                          NULL,
+                          SYSDATE,
+                          'Strat Inactiv for '||REC.AC_ID);
+  COMMIT;
+  END LOOP;
+  
+END;
+
+
+
+
+
+
+
+
+
+
+-- CREATED ON 21.10.2019 BY U10097 
+-- EVENT START
+--DECLARE
+  UAID1 VARCHAR2(150);
+  BEGIN
+
+    FOR REC IN (
+               SELECT W.ID1,W.ADD_DATA1,
+                     A.ID AS AC_ID,A.CONTRACT_NUMBER,
+                     (SELECT ET.ID FROM OWS.EVENT_TYPE ET
+                     WHERE ET.AMND_STATE='A' AND ET.CODE='SMS_INACT_ACC') AS EV_ID1
+                  FROM SBERBANK_CUST.TEMP_WT W, OWS.ACNT_CONTRACT A
+                 WHERE W.INFORM='CCDAY2' AND A.AMND_STATE='A' AND W.ID1=A.ID
+                       AND A.IS_READY<>'C' AND A.CONTR_STATUS NOT IN (857,273,86)
+                       AND W.ADD_DATA3 NOT LIKE '%YES%'
+                       AND A.AMOUNT_AVAILABLE = 0
+                       AND ROWNUM <= 10000 
+                                       )  
+    LOOP
+      
+   UAID1 := OWS.API.PUT_EVENT(REC.EV_ID1,
+                          REC.AC_ID,
+                          NULL,
+                          SYSDATE,
+                          'SMS_INACT_ACC '||REC.AC_ID);
+
+
+  COMMIT;
+  END LOOP;
+  
+END;

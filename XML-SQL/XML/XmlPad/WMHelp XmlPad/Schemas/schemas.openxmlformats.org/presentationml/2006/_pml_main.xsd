@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="http://schemas.openxmlformats.org/presentationml/2006/main" targetNamespace="http://schemas.openxmlformats.org/presentationml/2006/main" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified" attributeFormDefault="unqualified">
+   <xs:include schemaLocation="pml-comments.xsd"/>
+   <xs:include schemaLocation="pml-presentation.xsd"/>
+   <xs:include schemaLocation="pml-presentationProperties.xsd"/>
+   <xs:include schemaLocation="pml-slide.xsd"/>
+   <xs:include schemaLocation="pml-slideSynchronizationData.xsd"/>
+   <xs:include schemaLocation="pml-userDefinedTags.xsd"/>
+   <xs:include schemaLocation="pml-viewProperties.xsd"/>
+</xs:schema>

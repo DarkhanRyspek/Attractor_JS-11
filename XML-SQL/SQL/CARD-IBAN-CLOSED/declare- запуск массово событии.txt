@@ -1,0 +1,62 @@
+-- CREATED ON 19.06.2018 BY U10097 
+-- запуск события по счетам
+DECLARE
+  EvntType dtype. RecordID %TYPE;
+  UAID     dtype. RecordID %TYPE;
+  RetCode  dtype. Counter  %Type;
+  
+BEGIN 
+  stnd.START_SESSION(NewOfficerId => 1, ComputerName => null, AppName => null , AppVersion => null);
+  stnd.INIT_SESSION;
+  
+
+  RetCode := ows.stnd.PROCESS_START('StartEventFor_Inactive', 'CustVer=20200317-001', ows.stnd.Yes); 
+  
+  FOR acnt_card IN (
+SELECT a.id, a.contract_number, a.date_open,
+       trunc(nvl(ows.glob.LDATEACNT(a.id), ows.glob.GET_DB_DATE_WS)) CurrDate,
+       to_date(ows.glob.get_TAG_VALUE(a.ext_data, 'ACTIVITY_DATE'),'yyyy-mm-dd'),
+       a.total_blocked,
+       a.total_balance,
+       nvl((SELECT SUM(acc.current_balance) FROM account acc
+            WHERE acc.acnt_contract__oid = a.id AND acc.code = 'P'), 0) ClDeposit,
+       nvl((SELECT SUM(acc.current_balance) FROM account acc
+            WHERE acc.acnt_contract__oid = a.id AND acc.code != 'P'), 0) AllAccount,
+       nvl((SELECT SUM(acc.current_balance) FROM account acc
+            WHERE acc.acnt_contract__oid = a.id AND acc.current_balance > 0), 0) ClDeposit2,
+       nvl((SELECT SUM(acc.current_balance) FROM account acc
+            WHERE acc.acnt_contract__oid = a.id AND acc.current_balance < 0), 0) AllAccount2
+  FROM acnt_contract a
+ WHERE a.amnd_state = 'A' AND a.pcat = 'C'
+       AND a.ccat = 'P' AND a.con_cat = 'A'
+       and a.is_ready = 'Y'
+       AND ROWNUM <= 4000
+       AND A.CONTRACT_NUMBER IN (SELECT A1.CONTRACT_NUMBER FROM SBERBANK_CUST.TEMP_WT S, OWS.ACNT_CONTRACT A1 WHERE S.INFORM = 'IBANINACT2'
+                                        AND S.ADD_DATA1=A1.CONTRACT_NUMBER AND A1.AMND_STATE='A')
+       AND EXISTS (SELECT 1 FROM acc_scheme acs
+                   WHERE acs.id = a.acc_scheme__id AND acs.amnd_state = 'A'
+                     AND acs.pcat = a.pcat AND acs.scheme_name LIKE 'Db%')
+       AND nvl(ows.glob.LDATEACNT(a.id), ows.glob.GET_DB_DATE_WS) -
+           nvl(to_date(ows.glob.get_TAG_VALUE(a.ext_data, 'ACTIVITY_DATE'), 'yyyy-mm-dd'), a.date_open) > 365
+       AND NOT EXISTS (SELECT 1 FROM usage_action uu, event_type tt
+                       WHERE a.id = uu.acnt_contract__id AND uu.event_type = tt.id
+                             AND tt.amnd_state='A' AND tt.code = ('SMS_INACT_ACC') AND uu.posting_status = 'P')
+                             )
+  
+  LOOP
+    EvntType := ows.evnt.EVENT_BY_CODE('SMS_INACT_ACC', acnt_card.id);
+    IF EvntType IS NOT NULL
+    THEN UaID := ows.api.PUT_EVENT(EvntType,
+                            acnt_card.id,
+                            NULL,
+                            acnt_card.CurrDate,
+                            'Contract Inactive.');
+      ows.stnd.PROCESS_MESSAGE(stnd.Information, 'Put Event SMS_INACT_ACC for contract_id = ' || acnt_card.id);
+    END IF;
+    COMMIT;
+  END LOOP;
+  ows.stnd.PROCESS_END;
+  COMMIT;
+  stnd.FINISH_SESSION; 
+  COMMIT;                        
+END;

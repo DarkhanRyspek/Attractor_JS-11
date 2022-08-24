@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ow="http://www.openwaygroup.com/xmlns/ufxtypes" attributeFormDefault="unqualified" elementFormDefault="unqualified">
+    <xs:include schemaLocation="WAY4FileTypes.xsd"/>
+    <xs:complexType name="W4G_GoodsPriceFile">
+        <xs:annotation>
+            <xs:appinfo>The purpose of this file is to load Fleet cards Goods Local dictionary.</xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="FileHeader" type="W4G_GoodsPriceFileHeader"/>
+            <xs:element minOccurs="1" name="RetailChains">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="1" name="RetailChain" type="W4G_RetailChain"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="W4G_GoodsPriceFileHeader">
+        <xs:complexContent>
+            <xs:restriction base="W4F_FileHeader">
+                <xs:sequence>
+                    <xs:sequence maxOccurs="1" minOccurs="1">
+                        <xs:element maxOccurs="1" minOccurs="0" name="FileLabel" type="W4D_Code">
+                            <xs:annotation>
+                                <xs:appinfo>File label defines type of the file content.</xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element maxOccurs="1" minOccurs="1" name="FormatVersion" type="W4D_Version">
+                            <xs:annotation>
+                                <xs:appinfo>File format version: 2.0</xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element maxOccurs="1" minOccurs="0" name="Sender" type="W4D_Code">
+                            <xs:annotation>
+                                <xs:appinfo>Sender code. The code from the "Member ID" field of the BIN table ("Full \ Configuration Setup \ Routing \ BIN Groups \ [BIN Table]")</xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element maxOccurs="1" minOccurs="1" name="CreationDate" type="W4D_Date">
+                            <xs:annotation>
+                                <xs:appinfo>File creation date.</xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element maxOccurs="1" minOccurs="1" name="CreationTime" type="W4D_Time">
+                            <xs:annotation>
+                                <xs:appinfo>File creation time.</xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element maxOccurs="1" minOccurs="1" name="Number" type="W4D_Counter">
+                            <xs:annotation>
+                                <xs:appinfo>Sequential file number within the creation date.</xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element maxOccurs="1" minOccurs="1" name="Institution" type="W4D_Code">
+                            <xs:annotation>
+                                <xs:appinfo>Financial institution assigned to the application. Codes are defined in the Branch Code field of the Financial Institutions table ("Full \ Configuration Setup \ Main Tables \ Financial Institutions").</xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:sequence>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="W4G_RetailChain">
+        <xs:annotation>
+            <xs:appinfo>The type is container of Prices related to an Retail Chain</xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="0" name="IdtScheme" type="W4D_Code">
+                <xs:annotation>
+                    <xs:appinfo>The attribute determines Contract match method should be used</xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="MemberID" type="W4D_Name">
+                <xs:annotation>
+                    <xs:appinfo>The MemberID Retail Chain related to</xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="ContractNumber" type="W4D_ContractNumber">
+                <xs:annotation>
+                    <xs:appinfo>The Retail Channel Contract identity</xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="Device" type="W4G_Device">
+                <xs:annotation>
+                    <xs:appinfo>The set of attributes to match Device related to Retail Chain the price list related to</xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="GoodsPrices">
+                <xs:annotation>
+                    <xs:appinfo>The type is container of GoodsPrices need to be loaded</xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="1" name="GoodsPrice" type="W4G_GoodsPrice"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="W4G_Device">
+        <xs:annotation>
+            <xs:appinfo>The set of attributes to match Device.</xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="TerminalID" type="W4D_ContractNumber"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="MerchantID" type="W4D_Code"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="MemberID" type="W4D_Code"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="MatchMask" type="W4D_Code"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="W4G_GoodsPrice">
+        <xs:annotation>
+            <xs:appinfo>The values of attributes will be inserted or updated in goods_price table.</xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="0" name="GoodsItemCode" type="W4D_Code">
+                <xs:annotation>
+                    <xs:appinfo>Goods Item Code. Used to identify Goods within GoodsNomenclature.</xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="GoodsLocalCode" type="W4D_Name">
+                <xs:annotation>
+                    <xs:appinfo>Goods Local Code. Used to identify Goods within GoodsCodingSet.</xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="Price" type="W4D_Amount">
+                <xs:annotation>
+                    <xs:appinfo>Price value</xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="CurrencyCode" type="W4D_Currency">
+                <xs:annotation>
+                    <xs:appinfo>Currency Code for Price</xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="EffectiveDate" type="W4D_DateTime">
+                <xs:annotation>
+                    <xs:appinfo>The date and time since the Goods became available for transactions.
+                        If no value specified then the Goods will be available for transactions.</xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="ExpirationDate" type="W4D_DateTime">
+                <xs:annotation>
+                    <xs:appinfo>The date and time since the Goods will became not available for transactions.
+                        If no value specified then the Goods will be available for transactions.</xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="AddData" type="W4D_Text">
+                <xs:annotation>
+                    <xs:appinfo>Additional information need to be stored for given Goods. The OpenWay tag-value format should be used.
+                        If no value specified then existing in the database value will not be deleted. Otherwise existing value will be replaced with received one.</xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="GoodsPriceFile" type="W4G_GoodsPriceFile"/>
+</xs:schema>

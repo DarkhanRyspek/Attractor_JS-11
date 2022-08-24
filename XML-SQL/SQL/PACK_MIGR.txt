@@ -1,0 +1,335 @@
+create or replace package OPT_TPLAN_MIGR is
+
+  -- Author  : U12670
+  -- Created : 27.08.2020 9:24:28
+  -- Purpose : Миграция счетов и карт на продукт с тарифным планом
+  -- 30112020 : add new parametr 'p_ap_name'
+  
+
+PROCEDURE migr_to_tplan_by_acc(p_acc_id IN dtype. RecordID %TYPE,p_ap_name IN VARCHAR2);
+
+end OPT_TPLAN_MIGR;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE OR REPLACE PACKAGE BODY OPT_TPLAN_MIGR IS
+
+PROCEDURE insert_acnt_hist(p_acnt_id IN dtype. RecordID %TYPE)
+  is
+begin
+
+  INSERT INTO acnt_contract
+  (amnd_date, amnd_state, amnd_officer, amnd_prev, id, pcat, con_cat, terminal_category, ccat, f_i, branch, service_group, contract_number, base_relation, contract_name, comment_text, relation_tag, acnt_contract__id, contr_type, contr_subtype__id, serv_pack__id, acc_scheme__id, old_pack, channel, old_scheme, product, parent_product, product_prev, main_product, liab_category, client__id, client_type, acnt_contract__oid, liab_contract, liab_contract_prev, billing_contract, behavior_group, behavior_type, behavior_type_prev, check_available, check_usage, curr, old_curr, auth_limit_amount, base_auth_limit, liab_balance, liab_blocked, own_balance, own_blocked, sub_balance, sub_blocked, total_blocked, total_balance, shared_balance, shared_blocked, amount_available, date_open, date_expire, last_billing_date, next_billing_date, last_scan, card_expire, production_status, rbs_member_id, rbs_number, report_type, max_pin_attempts, pin_attempts, risk_scheme, chip_scheme, risk_factor, risk_factor_prev, contr_status, merchant_id, tr_title, tr_company, tr_country, tr_first_nam, tr_last_nam, tr_sic, add_info_01, add_info_02, add_info_03, add_info_04, contract_level, ext_data, report_address, share_balance, is_multycurrency, enables_item, cycle_length, interval_type, status_category, limit_is_active, routing_idt, is_ready, settlement_type, auth_seq_n, apply_dt, local_version, remote_version)
+  select
+  amnd_date, 'I', amnd_officer, amnd_prev, null, pcat, con_cat, terminal_category, ccat, f_i, branch, service_group, contract_number, base_relation, contract_name, comment_text, relation_tag, acnt_contract__id, contr_type, contr_subtype__id, serv_pack__id, acc_scheme__id, old_pack, channel, old_scheme, product, parent_product, product_prev, main_product, liab_category, client__id, client_type, acnt_contract__oid, liab_contract, liab_contract_prev, billing_contract, behavior_group, behavior_type, behavior_type_prev, check_available, check_usage, curr, old_curr, auth_limit_amount, base_auth_limit, liab_balance, liab_blocked, own_balance, own_blocked, sub_balance, sub_blocked, total_blocked, total_balance, shared_balance, shared_blocked, amount_available, date_open, date_expire, last_billing_date, next_billing_date, last_scan, card_expire, production_status, rbs_member_id, rbs_number, report_type, max_pin_attempts, pin_attempts, risk_scheme, chip_scheme, risk_factor, risk_factor_prev, contr_status, merchant_id, tr_title, tr_company, tr_country, tr_first_nam, tr_last_nam, tr_sic, add_info_01, add_info_02, add_info_03, add_info_04, contract_level, ext_data, report_address, share_balance, is_multycurrency, enables_item, cycle_length, interval_type, status_category, limit_is_active, routing_idt, is_ready, settlement_type, auth_seq_n, apply_dt, local_version, remote_version 
+  from acnt_contract
+  where id=p_acnt_id;
+
+end insert_acnt_hist;
+
+
+PROCEDURE ADD_SMS(p_acnt_id IN dtype. RecordID %TYPE)
+  is
+  v_usage_action_id dtype. RecordID %TYPE;
+  v_count_event number;
+  v_add_sms_cnt number := 0;
+begin
+
+  --Отключить по счету ADD_SMS1A
+  select count(u.event_type) count_event
+  into v_count_event
+  from USAGE_ACTION u
+  where u.acnt_contract__id = p_acnt_id
+        and u.posting_status = 'S'
+        and u.event_type = (60);--ADD_SMS1A
+
+  IF v_count_event>0
+      THEN
+        v_usage_action_id := EVNT.QUE_EVENT_D(169, p_acnt_id, null, null, null, null, 'Отключение SMS'); --OFF_SMS1A
+  END IF;
+
+  --Отключить по счету ADD_SMS2A
+  select count(u.event_type) count_event
+  into v_count_event
+  from USAGE_ACTION u
+  where u.acnt_contract__id = p_acnt_id
+        and u.posting_status = 'S'
+        and u.event_type = (61);--ADD_SMS2A
+
+  IF v_count_event>0
+      THEN
+        v_usage_action_id := EVNT.QUE_EVENT_D(171, p_acnt_id, null, null, null, null, 'Отключение SMS'); --OFF_SMS2A
+  END IF;
+
+  --Отключить по счету ADD_SMS3A
+  select count(u.event_type) count_event
+  into v_count_event
+  from USAGE_ACTION u
+  where u.acnt_contract__id = p_acnt_id
+        and u.posting_status = 'S'
+        and u.event_type = (62);--ADD_SMS3A
+
+  IF v_count_event>0
+      THEN
+        v_usage_action_id := EVNT.QUE_EVENT_D(174, p_acnt_id, null, null, null, null, 'Отключение SMS'); --OFF_SMS3A
+  END IF;
+
+
+  --Отключение SMS по картам
+  FOR cards IN (select ac.id
+              from ows.acnt_contract ac
+             where ac.amnd_state = 'A'
+               and ac.pcat = 'C'
+               and ac.ccat = 'P'
+               and ac.con_cat = 'C'
+               and ac.is_ready = 'Y'
+               and ac.acnt_contract__oid = p_acnt_id)
+  LOOP
+
+    select count(u.event_type) count_event
+    into v_count_event
+    from USAGE_ACTION u
+    where u.acnt_contract__id = cards.id
+          and u.posting_status = 'S'
+          and u.event_type in (43, --ADD_SMS1
+                               2057 --ADD_SMS1_2Y
+                               );
+
+    IF v_count_event>0
+      THEN 
+        v_usage_action_id := EVNT.QUE_EVENT_D(147, cards.id, null, null, null, null, 'Отключение SMS'); --OFF_SMS1        
+        v_usage_action_id := EVNT.QUE_EVENT_D(43, cards.id, null, null, null, null, 'Переподключение SMS после изменения продукта'); --ADD_SMS1
+        v_add_sms_cnt := v_add_sms_cnt + 1;
+    END IF;
+
+    select count(u.event_type) count_event
+    into v_count_event
+    from USAGE_ACTION u
+    where u.acnt_contract__id = cards.id
+          and u.posting_status = 'S'
+          and u.event_type in (44,   --ADD_SMS2
+                               2117 --ADD_SMS2_2Y
+                               );
+
+    IF v_count_event>0
+      THEN 
+        v_usage_action_id := EVNT.QUE_EVENT_D(191, cards.id, null, null, null, null, 'Отключение SMS'); --OFF_SMS2
+        v_usage_action_id := EVNT.QUE_EVENT_D(44, cards.id, null, null, null, null, 'Переподключение SMS после изменения продукта'); --ADD_SMS2
+        v_add_sms_cnt := v_add_sms_cnt + 1;
+    END IF;
+
+    select count(u.event_type) count_event
+    into v_count_event
+    from USAGE_ACTION u
+    where u.acnt_contract__id = cards.id
+          and u.posting_status = 'S'
+          and u.event_type in (45,   --ADD_SMS3
+                               2125 --ADD_SMS3_2Y
+                               );
+
+    IF v_count_event>0
+      THEN 
+        v_usage_action_id := EVNT.QUE_EVENT_D(200, cards.id, null, null, null, null, 'Отключение SMS'); --OFF_SMS3
+        v_usage_action_id := EVNT.QUE_EVENT_D(45, cards.id, null, null, null, null, 'Переподключение SMS после изменения продукта'); --ADD_SMS3
+        v_add_sms_cnt := v_add_sms_cnt + 1;
+    END IF;
+
+    IF v_add_sms_cnt=0
+      THEN
+        v_usage_action_id := EVNT.QUE_EVENT_D(4529, cards.id, null, null, null, null, 'Отключение SMS'); --OFF_SMS1_E1
+        v_usage_action_id := EVNT.QUE_EVENT_D(4489, cards.id, null, null, null, null, 'Переподключение SMS после изменения продукта'); --ADD_SMS1_Econom
+    END IF;       
+
+  END LOOP;
+
+exception when others
+  then
+    RAISE;
+end ADD_SMS;
+
+
+
+PROCEDURE add_log(p_acnt_contract_id IN dtype. RecordID %TYPE,
+                    p_status           IN VARCHAR,
+                    p_error_level      IN VARCHAR,
+                    p_msg              IN VARCHAR
+                    )
+  is
+  PRAGMA AUTONOMOUS_TRANSACTION;
+begin
+
+  INSERT INTO OPT_TMP_TPLAN_MIGR_LOG
+  (proc_date,
+  acnt_contract_id,
+  status,
+  error_level,
+  msg)
+  values
+  (sysdate,
+  p_acnt_contract_id,
+  p_status,
+  p_error_level,
+  p_msg);
+
+  COMMIT;
+
+end add_log;
+
+PROCEDURE migr_to_tplan_by_acc(p_acc_id IN dtype. RecordID %TYPE,p_ap_name IN VARCHAR2) 
+  IS
+  v_acc_scheme    dtype. RecordID %TYPE;
+  v_main_product  NUMBER;
+  v_sub_product   NUMBER;
+  v_approve_err   dtype. ErrorMessage %TYPE;
+  v_errmsg        varchar2(800);
+
+  FUNCTION check_subtype_in_tplan (pp_acc_id IN dtype. RecordID %TYPE)
+  RETURN NUMBER IS
+    v_product_cnt   NUMBER;
+  BEGIN
+    -- получить contr_subtype карт под счетом
+    FOR cur IN  (select ac.contr_subtype__id card_subtype
+              from ows.acnt_contract ac
+             where ac.amnd_state = 'A'
+               and ac.pcat = 'C'
+               and ac.ccat = 'P'
+               and ac.con_cat = 'C'
+               and ac.is_ready = 'Y'
+               and ac.acnt_contract__oid = pp_acc_id)
+
+    -- Есть ли contr_subtype карты в TPlan
+    LOOP
+      select count(p.id)
+        into v_product_cnt
+        from APPL_PRODUCT p, APPL_PRODUCT s_p
+       where p.amnd_state = 'A'
+         and p.appl_product__oid is null
+         and p.name like '%TPLAN%'
+     AND p.name like to_char('%' || p_ap_name || '%')
+         and p.acc_scheme = v_acc_scheme
+         and p.id = s_p.appl_product__oid
+         and s_p.amnd_state = 'A'
+         and s_p.name not like '%IMPERSONAL%'
+         and s_p.contr_subtype = cur.card_subtype;
+
+       IF v_product_cnt<>1
+         THEN 
+           RETURN 0;
+       END IF;        
+
+    END LOOP; 
+
+    RETURN 1;   
+
+  END check_subtype_in_tplan;
+
+BEGIN
+-- Получить acc_acheme
+  select ac.acc_scheme__id
+    into v_acc_scheme
+    from ows.acnt_contract ac
+   where ac.amnd_state = 'A'
+     and ac.pcat = 'C'
+     and ac.ccat = 'P'
+     and ac.con_cat = 'A'
+     and ac.is_ready = 'Y'
+     and ac.id = p_acc_id;
+
+  -- 0 - подходящий продукт не найден, 1 - продукт найден
+  IF check_subtype_in_tplan (p_acc_id)=0
+    THEN
+      add_log(p_acc_id, null, 'ERROR', 'Подходящий продукт TPlan не найден'); 
+      return;
+  END IF;
+
+  --Определить main product
+  select p.internal_code
+  into v_main_product
+    from ows.appl_product p
+   where p.amnd_state = 'A'
+     and p.appl_product__oid is null
+     and p.name like '%TPLAN%'
+     AND p.name like to_char('%' || p_ap_name || '%')
+     and p.acc_scheme = v_acc_scheme;
+
+  --insert hist
+  insert_acnt_hist(p_acc_id);
+
+  --Update product in main contract
+  update ows.acnt_contract ac
+  set ac.product=v_main_product, 
+      ac.amnd_date=sysdate, 
+      ac.amnd_officer=55502, --Жулдызбаев Т.М.
+      ac.is_ready='N'
+  where ac.id=p_acc_id;
+
+
+  --Update product in sub contract
+  FOR cur IN  (select ac.id card_id, ac.contr_subtype__id card_subtype
+              from ows.acnt_contract ac
+             where ac.amnd_state = 'A'
+               and ac.pcat = 'C'
+               and ac.ccat = 'P'
+               and ac.con_cat = 'C'
+               and ac.is_ready = 'Y'
+               and ac.acnt_contract__oid = p_acc_id)
+  LOOP
+    select s_p.internal_code
+      into v_sub_product
+      from APPL_PRODUCT p, APPL_PRODUCT s_p
+     where p.amnd_state = 'A'
+       and p.appl_product__oid is null
+       and p.name like '%TPLAN%'
+     AND p.name like to_char('%' || p_ap_name || '%')
+       and p.acc_scheme = v_acc_scheme
+       and p.id = s_p.appl_product__oid
+       and s_p.amnd_state = 'A'
+       and s_p.name not like '%IMPERSONAL%'
+       and s_p.contr_subtype = cur.card_subtype;
+
+    --insert hist
+    insert_acnt_hist(cur.card_id);
+
+    update ows.acnt_contract ac
+    set ac.product=v_sub_product, 
+        ac.amnd_date=sysdate, 
+        ac.amnd_officer=55502, --Жулдызбаев Т.М.
+        ac.is_ready='N'
+    where ac.id=cur.card_id;
+
+  END LOOP;
+
+  v_approve_err := SPAC.RENEW_CONTR(p_acc_id);
+
+  IF v_approve_err<>'I Contract updated'
+    THEN add_log(p_acc_id, 'APPROVE', 'ERROR', v_approve_err);
+  END IF;
+
+  add_log(p_acc_id, 'MIGRATED', null, null); 
+
+  ADD_SMS(p_acc_id);
+
+  add_log(p_acc_id, 'SMS added', null, null);
+
+  COMMIT;
+
+  Exception when others
+    then
+    v_errmsg := sqlerrm;  
+    add_log(p_acc_id, null, 'EXEPT', SUBSTR(v_errmsg || ' > ' || dbms_utility.format_error_backtrace, 1, 380));
+
+  END migr_to_tplan_by_acc;
+
+END OPT_TPLAN_MIGR;

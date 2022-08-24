@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UFXMsg direction="Rq" msg_type="Application" scheme="WAY4Appl" version="2.6.741">
+	<MsgId>C767226288C1E0A95E1442FEE8CA24CF</MsgId>
+	<Source app="W4G"/>
+	<MsgData>
+		<Application>
+			<RegNumber>PC_APL_NC_331_19_0000000002_01</RegNumber>
+			<Institution>0038</Institution>
+			<OrderDprt>TXB99</OrderDprt>
+			<ObjectType>Contract</ObjectType>
+			<ActionType>Add</ActionType>
+			<ResultDtls>
+				<Parm>
+					<ParmCode>AcceptRq</ParmCode>
+					<Value>Y</Value>
+				</Parm>
+				<Parm>
+					<ParmCode>Response</ParmCode>
+					<Value>Y</Value>
+				</Parm>
+			</ResultDtls>
+			<ObjectFor>
+				<ClientIDT>
+					<ClientInfo>
+						<ClientNumber>дюммше йкхемрю</ClientNumber>
+						<ShortName>дюммше йкхемрю</ShortName>
+					</ClientInfo>
+				</ClientIDT>
+			</ObjectFor>
+			<Data>
+				<Contract>
+					<ContractIDT>
+						<RBSNumber>дюммше йкхемрю</RBSNumber>
+					</ContractIDT>
+					<Product>
+						<ProductCode1>йнд опндсйрю яверю</ProductCode1>
+					</Product>
+					<DateOpen>2019-11-27</DateOpen>
+					<AddContractInfo>
+						<AddInfo03>u11017</AddInfo03>
+					</AddContractInfo>
+				</Contract>
+			</Data>
+			<SubApplList>
+				<Application>
+					<RegNumber>PC_APL_NC_331_19_0000000002_02</RegNumber>
+					<ObjectType>Contract</ObjectType>
+					<ActionType>Add</ActionType>
+					<Data>
+						<Contract>
+							<ContractIDT>
+								<RBSNumber>дюммше йкхемрю</RBSNumber>
+							</ContractIDT>
+							<Product>
+								<ProductCode1>йнд опндсйрю йюпрш</ProductCode1>
+							</Product>
+							<PlasticInfo>
+								<FirstName>дюммше йкхемрю</FirstName>
+								<LastName>дюммше йкхемрю</LastName>
+							</PlasticInfo>
+							<DateOpen>2019-11-27</DateOpen>
+						</Contract>
+					</Data>
+				</Application>
+			</SubApplList>
+		</Application>
+	</MsgData>
+</UFXMsg>

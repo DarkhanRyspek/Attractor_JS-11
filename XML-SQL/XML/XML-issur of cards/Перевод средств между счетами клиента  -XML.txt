@@ -1,0 +1,71 @@
+<UFXMsg direction="Rq" msg_type="Application" scheme="WAY4Appl" version="2.0">
+	<MsgId>90d8222a7de4f746bdbeae19156a1ee</MsgId>
+	<Source app="W4G"/>
+	<MsgData>
+		<Application>
+			<RegNumber>PC_APL_CP_001_25_0000011851_01</RegNumber>
+			<Institution>0038</Institution>
+			<OrderDprt>UDO2AKT</OrderDprt>
+			<ObjectType>Contract</ObjectType>
+			<ActionType>Update</ActionType>
+			<ResultDtls>
+				<Parm>
+					<ParmCode>AcceptRq</ParmCode>
+					<Value>Y</Value>
+				</Parm>
+			</ResultDtls>
+			<ObjectFor>
+				<ContractIDT>
+					<ContractNumber>CLIENT_DATA</ContractNumber>
+					<RBSNumber>CLIENT_DATA</RBSNumber>
+					<Client>
+						<ClientInfo>
+							<ClientNumber>CLIENT_DATA</ClientNumber>
+						</ClientInfo>
+					</Client>
+				</ContractIDT>
+			</ObjectFor>
+			<Data>
+				<Contract>
+					<AddContractInfo>
+						<ADDINFO02>TRGT_NUM=CLIENT_DATA;</ADDINFO02>
+					</AddContractInfo>
+				</Contract>
+			</Data>
+			<SubApplList>
+				<Application>
+					<RegNumber>PC_APL_CP_001_25_0000011851_02</RegNumber>
+					<Institution>0038</Institution>
+					<OrderDprt>UDO2AKT</OrderDprt>
+					<ObjectType>Event</ObjectType>
+					<ActionType>Add</ActionType>
+					<ResultDtls>
+						<Parm>
+							<ParmCode>AcceptRq</ParmCode>
+							<Value>Y</Value>
+						</Parm>
+					</ResultDtls>
+					<ObjectFor>
+						<ContractIDT>
+							<ContractNumber>CLIENT_DATA</ContractNumber>
+							<RBSNumber>CLIENT_DATA</RBSNumber>
+							<Client>
+								<ClientInfo>
+									<ClientNumber>W100221</ClientNumber>
+								</ClientInfo>
+							</Client>
+						</ContractIDT>
+					</ObjectFor>
+					<Data>
+						<QueEvent>
+							<ActionCode>REST_TRANS_CA</ActionCode>
+							<Comment>Перенос остатков на карту</Comment>
+						</QueEvent>
+					</Data>
+				</Application>
+			</SubApplList>
+		</Application>
+	</MsgData>
+</UFXMsg>
+
+
