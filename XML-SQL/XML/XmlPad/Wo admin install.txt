@@ -1,5 +1,0 @@
-1. Download XmlPad files archive and unpack it to any folder
-2. Create empty registry key HKEY_CURRENT_USER\SOFTWARE\WMHelp Software\XmlPad
-3. Create folder %AppData%\Roaming\WmHelp\eGenerator.
-
----4. For normal using embedded IE execute regsvr32.exe WmhASPP.dll 
