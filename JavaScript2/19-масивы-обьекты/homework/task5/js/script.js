@@ -1,11 +1,21 @@
 let mySymbol = prompt ("Enter the first number", ""); 
 let rez = '';
 
-for (let i = 1; i <= 7; i++){
-    rez = mySymbol;
+if (mySymbol === null || mySymbol.length > 1 || mySymbol.length < 1) {
+    alert('You enter incorrect symbol');
+} else {
+    for (let i = 0; i < 7; i++){
+        for (let j = 0; j < 20; j++){
+            rez = rez + mySymbol;
+        }
+        rez = rez + '\n'
+    }
 }
+
 alert(rez);
 
+console.log(mySymbol);
+console.log(rez);
 /*
 Задание 5
 Необходимо напечатать на экране с помощью alert прямоугольник, состоящий из символа, который запрошен у пользователя. 

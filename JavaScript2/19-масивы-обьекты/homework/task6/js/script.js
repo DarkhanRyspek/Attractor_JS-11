@@ -1,44 +1,52 @@
+const mainTimerSecond = 23466;
+let oneHour = 3600;
+
+if (mainTimerSecond === null || mainTimerSecond < 0 || mainTimerSecond > 28800) {
+    console.log('Wrong data')
+} else {
+    if ( mainTimerSecond < oneHour) {
+        console.log('Осталось менее часа');
+    } else if (mainTimerSecond > oneHour && mainTimerSecond < (oneHour * 2)){
+        console.log('Остался 1 час')
+    } else if (mainTimerSecond > (oneHour * 2) && mainTimerSecond < (oneHour * 3)){
+        console.log('Остался 2 час')
+    } else if (mainTimerSecond > (oneHour * 3) && mainTimerSecond < (oneHour * 4)){
+        console.log('Остался 3 часа')
+    } else if (mainTimerSecond > (oneHour * 4) && mainTimerSecond < (oneHour * 5)){
+        console.log('Остался 4 часа')
+    } else if (mainTimerSecond > (oneHour * 5) && mainTimerSecond < (oneHour * 6)){
+        console.log('Остался 5 часов')
+    } else if (mainTimerSecond > (oneHour * 6) && mainTimerSecond < (oneHour * 7)){
+        console.log('Остался 6 часов')
+    } else if (mainTimerSecond > (oneHour * 7) && mainTimerSecond < (oneHour * 8)){
+        console.log('Остался 7 часов')
+    } else {
+        console.log('Осталось 8 часов')
+    }
+}
+
+
 /*
-//for
-for (let i = 0; i <= 10; i++) {
-    console.log(i);
-}
-*/
-//do while
-let water = 0;
-do {
-    console.log('Add +1 liter water into the bucket');
-    water++;
-} while (water < 5);
+Задание 6
+На некотором предприятии инженер Петров создал устройство, на табло которого показывается количество секунд, оставшихся до конца рабочего дня. 
+Когда рабочий день начинается ровно в 9 часов утра — табло отображает "28800" (т.е. остается 8 часов), когда времени 14:30 — на табло "9000" (т.е. остаётся два с половиной часа), 
+а когда наступает 17 часов — на табло отображается "0" (т.е. рабочий день закончился).
+Ваш коллега заметил, как страдают офисные сотрудники — им неудобно оценивать остаток рабочего дня в секундах. Коллега вызвался помочь сотрудникам и написать программу, 
+которая будет переводить секунды в понятные фразы с информацией о том, сколько полных часов осталось до конца рабочего дня. 
+Например: "осталось 7 часов", "осталось 4 часа", "остался 1 час", "осталось менее часа".
+Программа должна запрашивать значение в секундах. Далее оно должно выводиться на экран (для Петрова) и на следующей строке (для сотрудниц) должна выводиться фраза о количестве полных часов, 
+содержащихся в этих секундах.
+Помогите вашему коллеге написать программу.
+Примеры работы программы:
+23466
+Осталось 6 часов
+10644
+Осталось 2 часа
+5891
+Остался 1 час
+1249
+Осталось менее часа
 
-
-while (water < 4) {
-    console.log('Add +1 liter water into the bucket');
-    water++;
-}
-
-
-
-/*
-//масивы 
-const numbers = [4, 8, 15, 16, 23, 42];
-const drinks = ['beer', 'milk', 'whiskey', 'cola'];
-
-console.log(drinks);
-console.log(drinks[0]);
-//add data in array
-drinks.push('pina colada');
-console.log(drinks);
-
-//хешы или обьекты
-const myObject = {
-    name: 'Darkhan',
-    surname: 'Ryspek',
-    age: 30,
-    citizen: true
-}
-
-console.log(myObject);
-console.log(myObject.citizen);
-console.log(myObject['age']);
-*/
+Указания:
+Использовать конструкцию if - else..if для решения этого упражнения.
+Сдавать в виде HTML-файла*/
